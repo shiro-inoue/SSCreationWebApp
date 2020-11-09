@@ -233,8 +233,13 @@ function canvasOutput() {
 
     context.font = "14px ＭＳ 明朝";
     context.fillStyle = 'rgb(0, 0, 0)';
-    context.fillText("202001-0041", 5, 270 + offset);
-    context.fillText("更新日：2015/04/01", 450, 270 + offset);
+    // context.fillText("202001-0041", 5, 270 + offset);
+    console.log("data = " + new Date());
+    let dt = new Date();
+    let year = dt.getFullYear();
+    let month = dt.getMonth() + 1;
+    let date = dt.getDate();
+    context.fillText("更新日：" + year + "/" + month + "/" + date, 450, 270 + offset);
 
     context.fillStyle = 'rgb(255, 165, 0)'; // 塗りつぶしの色
     context.fillRect(0, 280 + offset, 580, 5); // 左:0上:60の位置に、幅:580 高さ:5の四角形を描く
