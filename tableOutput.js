@@ -20,6 +20,11 @@ function initTable() {
     cell3.innerHTML = '<textarea rows="10" cols="50"></textarea>';
     cell4.innerHTML = '<textarea rows="10" cols="26"></textarea>';
     cell5.innerHTML = '<input type="checkbox" id="check1">管理<input type="checkbox" id="check2">設計<input type="checkbox" id="check3">開発<input type="checkbox" id="check4">評価<input type="checkbox" id="check5">他';
+
+    row = outputTable.insertRow(-1);
+    cell1 = row.insertCell(-1);
+    cell1.innerHTML = '<textarea rows="10" cols="160"></textarea>';
+    cell1.colSpan = 5; // セル結合のつもりだけど、うまく効かない
 }
 
 function readJSON() {
