@@ -1,5 +1,3 @@
-let flag = true;
-
 window.onload = function () {
     initTable();
 };
@@ -28,21 +26,16 @@ function initTable() {
 }
 
 function readJSON() {
-    let json;
     let jsonParse;
     let xhr = new XMLHttpRequest();
 
-    if (flag) {
-        xhr.open('GET', "./json/career204001.json");
-        xhr.onload = () => {
-            let jsonParse = JSON.parse(xhr.response);
-            // console.log(jsonParse.id);
-            createTable(jsonParse);
-        }
-        xhr.send();
+    xhr.open('GET', "./json/career204001.json");
+    xhr.onload = () => {
+        jsonParse = JSON.parse(xhr.response);
+        // console.log(jsonParse.id);
+        createTable(jsonParse);
     }
-    flag = false;
-    document.getElementById("readJSON").disabled = true;
+    xhr.send();
 }
 
 function createTable(jsonParse) {
