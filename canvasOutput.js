@@ -2,7 +2,7 @@ let context;
 
 function previewSS() {
     // 描画コンテキストの取得
-    let canvas = document.getElementById('canvas');
+    let canvas = document.getElementById('previewCanvas');
     context = canvas.getContext('2d');
 
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -161,7 +161,8 @@ function canvasOutput() {
         context.fillStyle = 'rgb(0, 0, 0)';
         context.fillText(row.cells[1].getElementsByTagName("input")[0].value, 22, 185 + offset);
         context.fillText(row.cells[1].getElementsByTagName("input")[1].value, 22, 205 + offset);
-        context.fillText("(xxヶ月)", 22, 225 + offset);
+        let period = calcMonth(row.cells[1].getElementsByTagName("input")[0].value, row.cells[1].getElementsByTagName("input")[1].value);
+        context.fillText("(" + period + "ヶ月)", 22, 225 + offset);
 
         // 経歴の枠
         context.strokeRect(0, 170 + offset, 350, 160);

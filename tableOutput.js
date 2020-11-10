@@ -40,6 +40,10 @@ function readJSON() {
     }
 }
 
+function writeJSON() {
+    alert("writeJSON() 未実装");
+}
+
 function createTable(jsonParse) {
     if (!window.confirm("表が初期化されますが、JSONファイルを読み込みますか？")) {
         return;
@@ -73,8 +77,10 @@ function createTable(jsonParse) {
                 case "期間":
                     // console.log("prj.start = " + prj.start);
                     // console.log("prj.end = " + prj.end);
+                    let period = calcMonth(prj.start, prj.end);
+                    // console.log("period = " + period);
                     cell2 = row.insertCell(-1);
-                    cell2.innerHTML = '<input name="startMonth" type="month" value=' + prj.start + '>' + '<br>～' + '<input name="endMonth" type="month" value=' + prj.end + '>' + '<br>(XXヶ月)';
+                    cell2.innerHTML = '<input name="startMonth" type="month" value=' + prj.start + '>' + '<br>～' + '<input name="endMonth" type="month" value=' + prj.end + '>' + '<br>(' + period + 'ヶ月)';
                     break;
                 case "経歴":
                     cell3 = row.insertCell(-1);
@@ -111,6 +117,23 @@ function createTable(jsonParse) {
     cell1 = row.insertCell(-1);
     cell1.innerHTML = '<textarea rows="10" cols="160">' + jsonParse.qualification + '</textarea>';
     cell1.colSpan = 5; // セル結合のつもりだけど、うまく効かない
+}
+
+function calcMonth(start, end) {
+    let startYear = start.substr(0, 4);
+    let startMonth = start.substr(5, 2);
+    let endYear = end.substr(0, 4);
+    let endMonth = end.substr(5, 2);
+    // console.log("startYear = " + startYear);
+    // console.log("startMonth = " + startMonth);
+    // console.log("endYear = " + endYear);
+    // console.log("endMonth = " + endMonth);
+    let year = endYear - startYear;
+    let month = endMonth - startMonth + 1;
+    if (month < 0) {
+        month += 12;
+    }
+    return month + year * 12;
 }
 
 function insertRow(obj) {
