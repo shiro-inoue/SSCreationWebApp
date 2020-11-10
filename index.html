@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スキルシート作成Webアプリ</title>
+    <script src="constants.js"></script>
+    <script src="tableOutput.js"></script>
+    <script src="canvasOutput.js"></script>
+    <script src="fileIO.js"></script>
+</head>
+
+<body>
+    <h1>スキルシート作成Webアプリ</h1>
+
+    <table border="1" style="border-collapse: collapse">
+        <tr>
+            <th width="80">社員番号</th>
+            <td>
+                <input type="text" size="3" value="000000">
+            </td>
+        </tr>
+        <tr>
+            <th>氏名</th>
+            <td width="240">
+                <input type="text" size="11" value="ソーバル">
+                <input type="text" size="11" value="太郎">
+            </td>
+        </tr>
+        <tr>
+            <th>ローマ字</th>
+            <td width="240">
+                <input type="text" size="11" value="SOBAL">
+                <input type="text" size="11" value="TARO">
+            </td>
+        </tr>
+    </table>
+
+    <br>
+    <input type="button" value="PDF出力" id="outputPDF" onclick="outputPDF()"><br>
+    <input type="file" value="JSON読み込み" id="readJSON" onchange="readJSON()"><br>
+    <input type="button" value="SSプレビュー" id="previewSS" onclick="previewSS()"><br>
+    <br>
+
+    <h2>経歴書</h2>
+
+    <table id="outputTable" border="1" style="border-collapse: collapse; font-size:10pt">
+        <tr>
+            <th width="50">No.</th>
+            <th width="100">期間</th>
+            <th width="400">経歴</th>
+            <th width="150">技術キーワード</th>
+            <th width="250">業務種別</th>
+        </tr>
+    </table>
+
+    <canvas id="canvas" width="600" height="2000"></canvas>
+</body>
+
+</html>
