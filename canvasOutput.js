@@ -15,7 +15,7 @@ function previewSS() {
 
     let image = new Image();
     image.onload = () => {
-        console.log("Loaded Image = " + "img/sobal.jpg");
+        // console.log("Loaded Image = " + "img/sobal.jpg");
         let x = 400;
         let y = 0;
         context.drawImage(image, x, y);
@@ -41,7 +41,27 @@ function previewSS() {
     // 識別番号
     context.font = "14px ＭＳ 明朝";
     context.fillStyle = 'rgb(0, 0, 0)';
-    context.fillText("IN202007OU", 110, 120);
+
+    let idNum;
+    let infoTable = document.getElementById("infoTable");
+    // console.log("infoTable.rows.length = " + infoTable.rows.length);
+
+    let cells = infoTable.rows[0].cells[1];
+	let id = cells.getElementsByTagName("input")[0].value;
+    // console.log("id = " + id);
+    cells = infoTable.rows[1].cells[1];
+    let lastName = cells.getElementsByTagName("input")[0].value;
+    let firstName = cells.getElementsByTagName("input")[1].value;
+    // console.log("lastName = " + lastName);
+    // console.log("firstName = " + firstName);
+    cells = infoTable.rows[2].cells[1];
+    let lastNameR = cells.getElementsByTagName("input")[0].value;
+    let firstNameR = cells.getElementsByTagName("input")[1].value;
+    // console.log("lastNameR = " + lastNameR);
+    // console.log("firstNameR = " + firstNameR);
+
+    idNum = lastNameR.substr(0, 2) + id + lastNameR.substr(2, 2); // ローマ字未入力でも落ちはしないが
+    context.fillText(idNum, 110, 120);
 
     // 項番の大枠
     context.strokeRect(0, 130, 580, 40);
@@ -138,8 +158,8 @@ function canvasOutput() {
         row = outputTable.children[0].children[i];
         // console.log(row.cells[1].getElementsByTagName("input")[0].value);
         // console.log(row.cells[1].getElementsByTagName("input")[1].value);
-        console.log(row.cells[2].getElementsByTagName("textarea")[0].value);
-        console.log(row.cells[3].getElementsByTagName("textarea")[0].value);
+        // console.log(row.cells[2].getElementsByTagName("textarea")[0].value);
+        // console.log(row.cells[3].getElementsByTagName("textarea")[0].value);
         // console.log(row.cells[4].getElementsByTagName("input")[0].checked);
         // console.log(row.cells[4].getElementsByTagName("input")[1].checked);
         // console.log(row.cells[4].getElementsByTagName("input")[2].checked);
@@ -235,7 +255,7 @@ function canvasOutput() {
     context.font = "14px ＭＳ 明朝";
     context.fillStyle = 'rgb(0, 0, 0)';
     // context.fillText("202001-0041", 5, 270 + offset);
-    console.log("data = " + new Date());
+    // console.log("data = " + new Date());
     let dt = new Date();
     let year = dt.getFullYear();
     let month = dt.getMonth() + 1;
