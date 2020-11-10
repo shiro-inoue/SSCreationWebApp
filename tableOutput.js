@@ -158,6 +158,8 @@ function insertRow(obj) {
     cell3.innerHTML = '<textarea rows="10" cols="50"></textarea>';
     cell4.innerHTML = '<textarea rows="10" cols="26"></textarea>';
     cell5.innerHTML = '<input type="checkbox" id="check1">管理<input type="checkbox" id="check2">設計<input type="checkbox" id="check3">開発<input type="checkbox" id="check4">評価<input type="checkbox" id="check5">他';
+
+    renumTable();
 }
 
 function deleteRow(obj) {
@@ -169,8 +171,21 @@ function deleteRow(obj) {
     tr = obj.parentNode.parentNode;
     // trのインデックスを取得して行を削除する
     tr.parentNode.deleteRow(tr.sectionRowIndex);
+
+    renumTable();
 }
 
 function outputPDF() {
     alert("outputPDF() 未実装");
+}
+
+function renumTable() {
+    let outputTable = document.getElementById("outputTable");
+    // console.log("outputTable.rows.length = " + outputTable.rows.length);
+
+    for (let i = 1; i < outputTable.rows.length - 1; i++) {
+        let cells = outputTable.rows[i].cells[0];
+        // console.log("cells.firstChild.nodeValue = " + cells.firstChild.nodeValue);
+        cells.firstChild.nodeValue = i;
+    }
 }
