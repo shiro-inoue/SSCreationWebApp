@@ -38,9 +38,10 @@
     </table>
 
     <br>
-    <input type="button" value="PDF出力" id="outputPDF" onclick="outputPDF()"><br>
-    <input type="file" value="JSON読み込み" id="readJSON" onchange="readJSON()"><br>
-    <input type="button" value="SSプレビュー" id="previewSS" onclick="previewSS()"><br>
+    <input type="button" value="PDF出力" id="outputPDF" onclick="outputPDF()">
+    <input type="file" value="import" id="readJSON" onchange="readJSON()">
+    <input type="button" value="export" id="writeJSON" onclick="writeJSON()">
+    <input type="button" value="SSプレビュー" id="previewSS" onclick="previewSS()">
     <br>
 
     <h2>経歴書</h2>
@@ -55,7 +56,7 @@
         </tr>
     </table>
 
-    <canvas id="canvas" width="600" height="2000"></canvas>
+    <canvas id="previewCanvas" width="800" height="1200"></canvas>
 </body>
 
 </html>

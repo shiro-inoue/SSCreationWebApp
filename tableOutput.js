@@ -40,6 +40,10 @@ function readJSON() {
     }
 }
 
+function writeJSON() {
+    alert("writeJSON() 未実装");
+}
+
 function createTable(jsonParse) {
     if (!window.confirm("表が初期化されますが、JSONファイルを読み込みますか？")) {
         return;

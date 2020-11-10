@@ -2,7 +2,7 @@ let context;
 
 function previewSS() {
     // 描画コンテキストの取得
-    let canvas = document.getElementById('canvas');
+    let canvas = document.getElementById('previewCanvas');
     context = canvas.getContext('2d');
 
     context.clearRect(0, 0, canvas.width, canvas.height);
