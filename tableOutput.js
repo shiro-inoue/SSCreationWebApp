@@ -26,16 +26,18 @@ function initTable() {
 }
 
 function readJSON() {
-    let jsonParse;
-    let xhr = new XMLHttpRequest();
-
-    xhr.open('GET', "./json/career204001.json");
-    xhr.onload = () => {
-        jsonParse = JSON.parse(xhr.response);
-        // console.log(jsonParse.id);
-        createTable(jsonParse);
+    const fileSelect = document.getElementById("readJSON");
+    if (fileSelect.files.length == 0) {
+        return;
     }
-    xhr.send();
+
+    let reader = new FileReader();
+    reader.readAsText(fileSelect.files[0]);
+    reader.onloadend = () => {
+        console.log(reader.result);
+        block_id = JSON.parse(reader.result);
+        createTable(block_id);
+    }
 }
 
 function createTable(jsonParse) {
@@ -90,11 +92,11 @@ function createTable(jsonParse) {
                     // console.log("prj.development = " + prj.development);
                     // console.log("prj.evaluation  = " + prj.evaluation);
                     // console.log("prj.other       = " + prj.other);
-                    managementChecked = (prj.management)? "checked = true": "";
-                    designChecked = (prj.design)? "checked = true": "";
-                    developmentChecked = (prj.development)? "checked = true": "";
-                    evaluationChecked = (prj.evaluation)? "checked = true": "";
-                    otherChecked = (prj.other)? "checked = true": "";
+                    managementChecked = (prj.management) ? "checked = true" : "";
+                    designChecked = (prj.design) ? "checked = true" : "";
+                    developmentChecked = (prj.development) ? "checked = true" : "";
+                    evaluationChecked = (prj.evaluation) ? "checked = true" : "";
+                    otherChecked = (prj.other) ? "checked = true" : "";
                     cell5 = row.insertCell(-1);
                     cell5.innerHTML = '<input type="checkbox" id="check1"' + managementChecked + '>管理<input type="checkbox" id="check2"' + designChecked + '>設計<input type="checkbox" id="check3"' + developmentChecked + '>開発<input type="checkbox" id="check4"' + evaluationChecked + '>評価<input type="checkbox" id="check5"' + otherChecked + '>他';
                     break;
