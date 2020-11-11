@@ -12,17 +12,19 @@ function initTable() {
     let cell3 = row.insertCell(-1);
     let cell4 = row.insertCell(-1);
     let cell5 = row.insertCell(-1);
+    let cell6 = row.insertCell(-1);
     // セルの内容入力
     cell1.innerHTML = index + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)">';
     cell2.innerHTML = '<input name="startMonth" type="month" onchange="setDate(this, 0)">' + '<br>～' + '<input name="endMonth" type="month" onchange="setDate(this, 1)">' + '<br>(0ヶ月)';
     cell3.innerHTML = '<textarea rows="10" cols="50"></textarea>';
     cell4.innerHTML = '<textarea rows="10" cols="26"></textarea>';
     cell5.innerHTML = '<input type="checkbox" id="check1">管理<input type="checkbox" id="check2">設計<input type="checkbox" id="check3">開発<input type="checkbox" id="check4">評価<input type="checkbox" id="check5">他';
+    cell6.innerHTML = '<textarea rows="10" cols="26"></textarea>';
 
     row = outputTable.insertRow(-1);
     cell1 = row.insertCell(-1);
-    cell1.innerHTML = '<textarea rows="10" cols="160"></textarea>';
-    cell1.colSpan = 5; // セル結合のつもりだけど、うまく効かない
+    cell1.innerHTML = '<textarea rows="10" cols="178"></textarea>';
+    cell1.colSpan = 6; // セル結合のつもりだけど、うまく効かない
 }
 
 function setDate(obj, index) {
@@ -109,6 +111,11 @@ function createTable(jsonParse) {
                     cell5 = row.insertCell(-1);
                     cell5.innerHTML = '<input type="checkbox" id="check1"' + managementChecked + '>管理<input type="checkbox" id="check2"' + designChecked + '>設計<input type="checkbox" id="check3"' + developmentChecked + '>開発<input type="checkbox" id="check4"' + evaluationChecked + '>評価<input type="checkbox" id="check5"' + otherChecked + '>他';
                     break;
+                case "メモ":
+                    cell6 = row.insertCell(-1);
+                    console.log("prj.memo = " + prj.memo);
+                    cell6.innerHTML = '<textarea rows="10" cols="26">' + prj.memo + '</textarea>';
+                    break;
                 default:
 
             }
@@ -118,8 +125,8 @@ function createTable(jsonParse) {
     // console.log("jsonParse.qualification = " + jsonParse.qualification);
     row = outputTable.insertRow(-1);
     cell1 = row.insertCell(-1);
-    cell1.innerHTML = '<textarea rows="10" cols="160">' + jsonParse.qualification + '</textarea>';
-    cell1.colSpan = 5; // セル結合のつもりだけど、うまく効かない
+    cell1.innerHTML = '<textarea rows="10" cols="178">' + jsonParse.qualification + '</textarea>';
+    cell1.colSpan = 6; // セル結合のつもりだけど、うまく効かない
 }
 
 function calcPeriod(start, end) {
@@ -155,12 +162,14 @@ function insertRow(obj) {
     let cell3 = row.insertCell(-1);
     let cell4 = row.insertCell(-1);
     let cell5 = row.insertCell(-1);
+    let cell6 = row.insertCell(-1);
     // セルの内容入力
     cell1.innerHTML = index + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)">';
     cell2.innerHTML = '<input name="startMonth" type="month" onchange="setDate(this, 0)">' + '<br>～' + '<input name="endMonth" type="month" onchange="setDate(this, 1)">' + '<br>(0ヶ月)';
     cell3.innerHTML = '<textarea rows="10" cols="50"></textarea>';
     cell4.innerHTML = '<textarea rows="10" cols="26"></textarea>';
     cell5.innerHTML = '<input type="checkbox" id="check1">管理<input type="checkbox" id="check2">設計<input type="checkbox" id="check3">開発<input type="checkbox" id="check4">評価<input type="checkbox" id="check5">他';
+    cell6.innerHTML = '<textarea rows="10" cols="26"></textarea>';
 
     renumTable();
 }

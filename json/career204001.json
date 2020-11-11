@@ -24,6 +24,10 @@
 				"development": false,
 				"evaluation": false,
 				"other": true
+			},
+			{
+				"title": "メモ",
+				"memo": "この欄は自由に記載ができます\nプレビュー・PDF出力の対象外です"
 			}
 		],
 		[
@@ -47,6 +51,10 @@
 				"development": false,
 				"evaluation": false,
 				"other": true
+			},
+			{
+				"title": "メモ",
+				"memo": "自由記載\nプレビュー・PDF出力の象外"
 			}
 		],
 		[
@@ -70,6 +78,10 @@
 				"development": false,
 				"evaluation": true,
 				"other": false
+			},
+			{
+				"title": "メモ",
+				"memo": ""
 			}
 		]
 	],
