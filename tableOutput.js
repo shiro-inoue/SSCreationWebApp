@@ -14,7 +14,7 @@ function initTable() {
     let cell5 = row.insertCell(-1);
     // セルの内容入力
     cell1.innerHTML = index + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)">';
-    cell2.innerHTML = '<input name="startMonth" type="month">' + '<br>～' + '<input name="endMonth" type="month">' + '<br>(XXヶ月)';
+    cell2.innerHTML = '<input name="startMonth" type="month" onchange="setDate(this, 0)">' + '<br>～' + '<input name="endMonth" type="month" onchange="setDate(this, 1)">' + '<br>(XXヶ月)';
     cell3.innerHTML = '<textarea rows="10" cols="50"></textarea>';
     cell4.innerHTML = '<textarea rows="10" cols="26"></textarea>';
     cell5.innerHTML = '<input type="checkbox" id="check1">管理<input type="checkbox" id="check2">設計<input type="checkbox" id="check3">開発<input type="checkbox" id="check4">評価<input type="checkbox" id="check5">他';
@@ -23,6 +23,28 @@ function initTable() {
     cell1 = row.insertCell(-1);
     cell1.innerHTML = '<textarea rows="10" cols="160"></textarea>';
     cell1.colSpan = 5; // セル結合のつもりだけど、うまく効かない
+}
+
+function setDate(obj, index) {
+    console.log("index = " + index);
+    let outputTable = document.getElementById("outputTable");
+    let row;
+    // console.log("outputTable.children[0].children.length = " + outputTable.children[0].children.length);
+
+    tr = obj.parentNode.parentNode;
+    // console.log("tr.sectionRowIndex = " + tr.sectionRowIndex);
+    row = outputTable.children[0].children[tr.sectionRowIndex];
+
+    let start = row.cells[1].getElementsByTagName("input")[0].value;
+    let end = row.cells[1].getElementsByTagName("input")[1].value;
+    // console.log("start = " + start);
+    // console.log("end   = " + end);
+    if (start != "" && end != "") {
+        let period = calcPeriod(start, end);
+        // console.log("period = " + period);
+        row.cells[1].innerHTML = '<input name="startMonth" type="month" onchange="setDate(this, 0)" value=' + start + '>' + '<br>～' + '<input name="endMonth" type="month" onchange="setDate(this, 1)" value=' + end + '>' + '<br>(' + period + 'ヶ月)';
+        // console.log(row.cells[1].innerHTML);
+    }
 }
 
 function readJSON() {
@@ -77,10 +99,10 @@ function createTable(jsonParse) {
                 case "期間":
                     // console.log("prj.start = " + prj.start);
                     // console.log("prj.end = " + prj.end);
-                    let period = calcMonth(prj.start, prj.end);
+                    let period = calcPeriod(prj.start, prj.end);
                     // console.log("period = " + period);
                     cell2 = row.insertCell(-1);
-                    cell2.innerHTML = '<input name="startMonth" type="month" value=' + prj.start + '>' + '<br>～' + '<input name="endMonth" type="month" value=' + prj.end + '>' + '<br>(' + period + 'ヶ月)';
+                    cell2.innerHTML = '<input name="startMonth" type="month" onchange="setDate(this, 0)" value=' + prj.start + '>' + '<br>～' + '<input name="endMonth" type="month" onchange="setDate(this, 1)" value=' + prj.end + '>' + '<br>(' + period + 'ヶ月)';
                     break;
                 case "経歴":
                     cell3 = row.insertCell(-1);
@@ -119,7 +141,7 @@ function createTable(jsonParse) {
     cell1.colSpan = 5; // セル結合のつもりだけど、うまく効かない
 }
 
-function calcMonth(start, end) {
+function calcPeriod(start, end) {
     let startYear = start.substr(0, 4);
     let startMonth = start.substr(5, 2);
     let endYear = end.substr(0, 4);
@@ -154,7 +176,7 @@ function insertRow(obj) {
     let cell5 = row.insertCell(-1);
     // セルの内容入力
     cell1.innerHTML = index + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)">';
-    cell2.innerHTML = '<input name="startMonth" type="month">' + '<br>～' + '<input name="endMonth" type="month">' + '<br>(XXヶ月)';
+    cell2.innerHTML = '<input name="startMonth" type="month" onchange="setDate(this, 0)">' + '<br>～' + '<input name="endMonth" type="month" onchange="setDate(this, 1)">' + '<br>(XXヶ月)';
     cell3.innerHTML = '<textarea rows="10" cols="50"></textarea>';
     cell4.innerHTML = '<textarea rows="10" cols="26"></textarea>';
     cell5.innerHTML = '<input type="checkbox" id="check1">管理<input type="checkbox" id="check2">設計<input type="checkbox" id="check3">開発<input type="checkbox" id="check4">評価<input type="checkbox" id="check5">他';

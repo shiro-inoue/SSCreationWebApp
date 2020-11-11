@@ -181,7 +181,7 @@ function canvasOutput() {
         context.fillStyle = 'rgb(0, 0, 0)';
         context.fillText(row.cells[1].getElementsByTagName("input")[0].value, 22, 185 + offset);
         context.fillText(row.cells[1].getElementsByTagName("input")[1].value, 22, 205 + offset);
-        let period = calcMonth(row.cells[1].getElementsByTagName("input")[0].value, row.cells[1].getElementsByTagName("input")[1].value);
+        let period = calcPeriod(row.cells[1].getElementsByTagName("input")[0].value, row.cells[1].getElementsByTagName("input")[1].value);
         context.fillText("(" + period + "ヶ月)", 22, 225 + offset);
 
         // 経歴の枠
