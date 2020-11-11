@@ -14,7 +14,7 @@ function initTable() {
     let cell5 = row.insertCell(-1);
     let cell6 = row.insertCell(-1);
     // セルの内容入力
-    cell1.innerHTML = index + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)">';
+    cell1.innerHTML = index + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)"><br><input type="checkbox" id="hideRow" onchange="hideRow(this)">行を非表示';
     cell2.innerHTML = '<input name="startMonth" type="month" onchange="setDate(this, 0)">' + '<br>～' + '<input name="endMonth" type="month" onchange="setDate(this, 1)">' + '<br>(0ヶ月)';
     cell3.innerHTML = '<textarea rows="10" cols="50"></textarea>';
     cell4.innerHTML = '<textarea rows="10" cols="26"></textarea>';
@@ -25,28 +25,6 @@ function initTable() {
     cell1 = row.insertCell(-1);
     cell1.innerHTML = '<textarea rows="10" cols="178"></textarea>';
     cell1.colSpan = 6; // セル結合のつもりだけど、うまく効かない
-}
-
-function setDate(obj, index) {
-    console.log("index = " + index);
-    let outputTable = document.getElementById("outputTable");
-    let row;
-    // console.log("outputTable.children[0].children.length = " + outputTable.children[0].children.length);
-
-    tr = obj.parentNode.parentNode;
-    // console.log("tr.sectionRowIndex = " + tr.sectionRowIndex);
-    row = outputTable.children[0].children[tr.sectionRowIndex];
-
-    let start = row.cells[1].getElementsByTagName("input")[0].value;
-    let end = row.cells[1].getElementsByTagName("input")[1].value;
-    // console.log("start = " + start);
-    // console.log("end   = " + end);
-    if (start != "" && end != "") {
-        let period = calcPeriod(start, end);
-        // console.log("period = " + period);
-        row.cells[1].innerHTML = '<input name="startMonth" type="month" onchange="setDate(this, 0)" value=' + start + '>' + '<br>～' + '<input name="endMonth" type="month" onchange="setDate(this, 1)" value=' + end + '>' + '<br>(' + period + 'ヶ月)';
-        // console.log(row.cells[1].innerHTML);
-    }
 }
 
 function createTable(jsonParse) {
@@ -73,7 +51,7 @@ function createTable(jsonParse) {
     for (i = 0; i < jsonParse.project.length; i++) {
         row = outputTable.insertRow(-1);
         cell1 = row.insertCell(-1);
-        cell1.innerHTML = i + 1 + '<br>' + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)">';
+        cell1.innerHTML = i + 1 + '<br>' + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)"><br><input type="checkbox" id="hideRow" onchange="hideRow(this)">行を非表示';
 
         jsonParse.project[i].forEach((prj, i) => {
             console.log("prj.title = " + prj.title);
@@ -146,6 +124,28 @@ function calcPeriod(start, end) {
     return month + year * 12;
 }
 
+function setDate(obj, index) {
+    console.log("index = " + index);
+    let outputTable = document.getElementById("outputTable");
+    let row;
+    // console.log("outputTable.children[0].children.length = " + outputTable.children[0].children.length);
+
+    tr = obj.parentNode.parentNode;
+    // console.log("tr.sectionRowIndex = " + tr.sectionRowIndex);
+    row = outputTable.children[0].children[tr.sectionRowIndex];
+
+    let start = row.cells[1].getElementsByTagName("input")[0].value;
+    let end = row.cells[1].getElementsByTagName("input")[1].value;
+    // console.log("start = " + start);
+    // console.log("end   = " + end);
+    if (start != "" && end != "") {
+        let period = calcPeriod(start, end);
+        // console.log("period = " + period);
+        row.cells[1].innerHTML = '<input name="startMonth" type="month" onchange="setDate(this, 0)" value=' + start + '>' + '<br>～' + '<input name="endMonth" type="month" onchange="setDate(this, 1)" value=' + end + '>' + '<br>(' + period + 'ヶ月)';
+        // console.log(row.cells[1].innerHTML);
+    }
+}
+
 function insertRow(obj) {
     if (!window.confirm("行を挿入しますか？")) {
         return;
@@ -164,7 +164,7 @@ function insertRow(obj) {
     let cell5 = row.insertCell(-1);
     let cell6 = row.insertCell(-1);
     // セルの内容入力
-    cell1.innerHTML = index + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)">';
+    cell1.innerHTML = index + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)"><br><input type="checkbox" id="hideRow" onchange="hideRow(this)">行を非表示';
     cell2.innerHTML = '<input name="startMonth" type="month" onchange="setDate(this, 0)">' + '<br>～' + '<input name="endMonth" type="month" onchange="setDate(this, 1)">' + '<br>(0ヶ月)';
     cell3.innerHTML = '<textarea rows="10" cols="50"></textarea>';
     cell4.innerHTML = '<textarea rows="10" cols="26"></textarea>';
@@ -187,13 +187,44 @@ function deleteRow(obj) {
     renumTable();
 }
 
+function hideRow(obj) {
+    let outputTable = document.getElementById("outputTable");
+    let row;
+    // console.log("outputTable.children[0].children.length = " + outputTable.children[0].children.length);
+
+    tr = obj.parentNode.parentNode;
+    // console.log("tr.sectionRowIndex = " + tr.sectionRowIndex);
+
+    row = outputTable.children[0].children[tr.sectionRowIndex];
+    let isHide = row.cells[0].getElementsByTagName("input")[2].checked;
+    // console.log("isHide = " + isHide);
+    if (isHide) {
+        row.style.backgroundColor = "#9f9f9f";
+    }
+    else {
+        row.style.backgroundColor = "#ffffff";
+    }
+
+    renumTable();
+}
+
 function renumTable() {
     let outputTable = document.getElementById("outputTable");
     // console.log("outputTable.rows.length = " + outputTable.rows.length);
+    let num = 1;
 
     for (let i = 1; i < outputTable.rows.length - 1; i++) {
         let cells = outputTable.rows[i].cells[0];
         // console.log("cells.firstChild.nodeValue = " + cells.firstChild.nodeValue);
-        cells.firstChild.nodeValue = i;
+
+        let row = outputTable.children[0].children[i];
+        let isHide = row.cells[0].getElementsByTagName("input")[2].checked;
+        // console.log("isHide = " + isHide);
+        if (isHide) {
+            cells.firstChild.nodeValue = "";
+        }
+        else {
+            cells.firstChild.nodeValue = num++;
+        }
     }
 }

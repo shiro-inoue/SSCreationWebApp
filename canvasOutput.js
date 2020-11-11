@@ -166,6 +166,11 @@ function canvasOutput() {
         // console.log(row.cells[4].getElementsByTagName("input")[3].checked);
         // console.log(row.cells[4].getElementsByTagName("input")[4].checked);
 
+        let isHide = row.cells[0].getElementsByTagName("input")[2].checked;
+        if (isHide) {
+            continue;
+        }
+
         // 内容の大枠
         context.strokeRect(0, 170 + offset, 580, 160);
 
@@ -173,7 +178,7 @@ function canvasOutput() {
         context.strokeRect(0, 170 + offset, 20, 160);
         context.font = "14px ＭＳ 明朝";
         context.fillStyle = 'rgb(0, 0, 0)';
-        context.fillText(i, 5, 230 + offset);
+        context.fillText(row.cells[0].firstChild.nodeValue, 5, 230 + offset);
 
         // 期間の枠
         context.strokeRect(0, 170 + offset, 80, 160);
