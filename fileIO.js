@@ -16,3 +16,7 @@ function readJSON() {
 function writeJSON() {
     alert("writeJSON() 未実装");
 }
+
+function outputPDF() {
+    alert("outputPDF() 未実装");
+}

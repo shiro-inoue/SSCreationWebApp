@@ -187,10 +187,6 @@ function deleteRow(obj) {
     renumTable();
 }
 
-function outputPDF() {
-    alert("outputPDF() 未実装");
-}
-
 function renumTable() {
     let outputTable = document.getElementById("outputTable");
     // console.log("outputTable.rows.length = " + outputTable.rows.length);
