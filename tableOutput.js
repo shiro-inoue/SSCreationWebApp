@@ -175,6 +175,10 @@ function insertRow(obj) {
 }
 
 function deleteRow(obj) {
+    if (outputTable.rows.length == 3) {
+        return;
+    }
+
     if (!window.confirm("行を削除しますか？")) {
         return;
     }
