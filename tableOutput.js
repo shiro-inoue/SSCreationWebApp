@@ -14,7 +14,7 @@ function initTable() {
     let cell5 = row.insertCell(-1);
     // セルの内容入力
     cell1.innerHTML = index + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)">';
-    cell2.innerHTML = '<input name="startMonth" type="month" onchange="setDate(this, 0)">' + '<br>～' + '<input name="endMonth" type="month" onchange="setDate(this, 1)">' + '<br>(XXヶ月)';
+    cell2.innerHTML = '<input name="startMonth" type="month" onchange="setDate(this, 0)">' + '<br>～' + '<input name="endMonth" type="month" onchange="setDate(this, 1)">' + '<br>(0ヶ月)';
     cell3.innerHTML = '<textarea rows="10" cols="50"></textarea>';
     cell4.innerHTML = '<textarea rows="10" cols="26"></textarea>';
     cell5.innerHTML = '<input type="checkbox" id="check1">管理<input type="checkbox" id="check2">設計<input type="checkbox" id="check3">開発<input type="checkbox" id="check4">評価<input type="checkbox" id="check5">他';
@@ -45,25 +45,6 @@ function setDate(obj, index) {
         row.cells[1].innerHTML = '<input name="startMonth" type="month" onchange="setDate(this, 0)" value=' + start + '>' + '<br>～' + '<input name="endMonth" type="month" onchange="setDate(this, 1)" value=' + end + '>' + '<br>(' + period + 'ヶ月)';
         // console.log(row.cells[1].innerHTML);
     }
-}
-
-function readJSON() {
-    const fileSelect = document.getElementById("readJSON");
-    if (fileSelect.files.length == 0) {
-        return;
-    }
-
-    let reader = new FileReader();
-    reader.readAsText(fileSelect.files[0]);
-    reader.onloadend = () => {
-        console.log(reader.result);
-        block_id = JSON.parse(reader.result);
-        createTable(block_id);
-    }
-}
-
-function writeJSON() {
-    alert("writeJSON() 未実装");
 }
 
 function createTable(jsonParse) {
@@ -176,7 +157,7 @@ function insertRow(obj) {
     let cell5 = row.insertCell(-1);
     // セルの内容入力
     cell1.innerHTML = index + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)">';
-    cell2.innerHTML = '<input name="startMonth" type="month" onchange="setDate(this, 0)">' + '<br>～' + '<input name="endMonth" type="month" onchange="setDate(this, 1)">' + '<br>(XXヶ月)';
+    cell2.innerHTML = '<input name="startMonth" type="month" onchange="setDate(this, 0)">' + '<br>～' + '<input name="endMonth" type="month" onchange="setDate(this, 1)">' + '<br>(0ヶ月)';
     cell3.innerHTML = '<textarea rows="10" cols="50"></textarea>';
     cell4.innerHTML = '<textarea rows="10" cols="26"></textarea>';
     cell5.innerHTML = '<input type="checkbox" id="check1">管理<input type="checkbox" id="check2">設計<input type="checkbox" id="check3">開発<input type="checkbox" id="check4">評価<input type="checkbox" id="check5">他';
