@@ -14,6 +14,7 @@ function previewSS() {
     context.fillRect(0, 60, 580, 5); // 左:0上:60の位置に、幅:580 高さ:5の四角形を描く
 
     let image = new Image();
+    image.crossOrigin = 'anonymous';
     image.onload = () => {
         // console.log("Loaded Image = " + "img/sobal.jpg");
         let x = 400;
