@@ -47,7 +47,7 @@ function previewSS() {
     // console.log("infoTable.rows.length = " + infoTable.rows.length);
 
     let cells = infoTable.rows[0].cells[1];
-	let id = cells.getElementsByTagName("input")[0].value;
+    let id = cells.getElementsByTagName("input")[0].value;
     // console.log("id = " + id);
     cells = infoTable.rows[1].cells[1];
     let lastName = cells.getElementsByTagName("input")[0].value;
@@ -143,7 +143,30 @@ function previewSS() {
 
     canvasOutput();
 
-    // canvas.style.display = "none";
+    let pop_win = window.open(
+        "",
+        "_blank",
+        'top=0, left=0, width=800, height=1200'
+    );
+    if (pop_win) {
+        pop_win.window.document.open();
+        pop_win.window.document.write(
+            '<html>'
+            + '<head>'
+            + '<title>' + "スキルシートプレビュー" + '</title>'
+            + '</head>'
+            + '<body style="margin:0;padding:0;border:0;">'
+            + '<canvas id="previewMainCanvas" width="800" height="1200"></canvas>'
+            + '</body>'
+            + '</html>'
+        );
+        pop_win.window.document.close();
+    }
+    let mainCanvas = pop_win.document.getElementById('previewMainCanvas');
+    let mainContext = mainCanvas.getContext('2d');
+    mainContext.drawImage(canvas, 0, 0);
+
+    canvas.style.display = "none";
 }
 
 function canvasOutput() {
