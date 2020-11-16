@@ -40,6 +40,13 @@ function previewSS() {
     });
 }
 
+function outputSS() {
+
+    outputMain();
+
+    return canvasArr;
+}
+
 function outputMain() {
     canvasArr.length = 0;
     createCanvas();
