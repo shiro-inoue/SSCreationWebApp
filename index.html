@@ -9,6 +9,7 @@
     <script src="tableOutput.js"></script>
     <script src="canvasOutput.js"></script>
     <script src="fileIO.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -39,8 +40,13 @@
 
     <br>
     <input type="button" value="PDF出力" id="outputPDF" onclick="outputPDF()">
+    <label>
+        <div class="bottunbox">
+           経歴ファイル選択
+          </div>
     <input type="file" value="import" id="readJSON" onchange="readJSON()">
-    <input type="button" value="export" id="writeJSON" onclick="writeJSON()">
+    </label>
+    <input type="button" value="経歴ファイル出力" id="writeJSON" onclick="writeJSON()">
     <input type="button" value="SSプレビュー" id="previewSS" onclick="previewSS()">
     <br>
 

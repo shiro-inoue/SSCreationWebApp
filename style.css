@@ -1,0 +1,29 @@
+#readJSON{
+    display: none;
+}
+
+/* ボタンのプロパティ */
+#outputPDF,#writeJSON,#previewSS,.bottunbox
+{
+    widows: 5px;
+    height: 25px;
+
+    display: inline-block;
+	position: relative;
+	width: 150px;
+	text-align: center;
+	/* text-decoration: none; */
+	color: #1B1B1B;
+	background: rgb(236, 233, 233);
+    border:1px solid #1B1B1B;
+}
+
+/* メイン画面の+-ボタンのプロパティ */
+#deleteRow,#insertRow
+{
+    width: 2rem;
+}
+
+
+
+
