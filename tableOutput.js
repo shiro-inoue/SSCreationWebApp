@@ -16,14 +16,14 @@ function initTable() {
     // セルの内容入力
     cell1.innerHTML = index + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)"><br><input type="checkbox" id="hideRow" onchange="hideRow(this)">行を非表示';
     cell2.innerHTML = '<input name="startMonth" type="month" onchange="setDate(this, 0)">' + '<br>～' + '<input name="endMonth" type="month" onchange="setDate(this, 1)">' + '<br>(0ヶ月)';
-    cell3.innerHTML = '<textarea rows="10" cols="50" onchange="verifyText(this, ' + ONEPROJECT_MAX_CHARNUM + ')"></textarea>';
-    cell4.innerHTML = '<textarea rows="10" cols="17" onchange="verifyText(this, ' + KEYWORD_MAX_CHARNUM + ')"></textarea>';
+    cell3.innerHTML = '<textarea rows="10" cols="50" style="width: 98%; height: 100%; resize: none" onchange="verifyText(this, ' + ONEPROJECT_MAX_CHARNUM + ')"></textarea>';
+    cell4.innerHTML = '<textarea rows="10" cols="17" style="width: 95%; height: 100%; resize: none" onchange="verifyText(this, ' + KEYWORD_MAX_CHARNUM + ')"></textarea>';
     cell5.innerHTML = '<input type="checkbox" id="check1">管理<input type="checkbox" id="check2">設計<input type="checkbox" id="check3">開発<input type="checkbox" id="check4">評価<input type="checkbox" id="check5">他';
-    cell6.innerHTML = '<textarea rows="10" cols="26"></textarea>';
+    cell6.innerHTML = '<textarea rows="10" cols="25" style="width: 97%; height: 100%; resize: none"></textarea>';
 
     row = outputTable.insertRow(-1);
     cell1 = row.insertCell(-1);
-    cell1.innerHTML = '<textarea rows="10" cols="178" onchange="verifyText(this, ' + QUALIFICATION_MAX_CHARNUM + ')"></textarea>';
+    cell1.innerHTML = '<label>資格</label><br><textarea rows="10" cols="92" style="width:99%; height:100%; resize: none" onchange="verifyText(this, ' + QUALIFICATION_MAX_CHARNUM + ')"></textarea>';
     cell1.colSpan = 6; // セル結合のつもりだけど、うまく効かない
 }
 
@@ -68,12 +68,12 @@ function createTable(jsonParse) {
                 case "経歴":
                     cell3 = row.insertCell(-1);
                     // console.log("prj.career = " + prj.career);
-                    cell3.innerHTML = '<textarea rows="10" cols="50" onchange="verifyText(this, ' + ONEPROJECT_MAX_CHARNUM + ')">' + prj.career + '</textarea>';
+                    cell3.innerHTML = '<textarea rows="10" cols="50" style="width: 98%; height: 100%; resize: none" onchange="verifyText(this, ' + ONEPROJECT_MAX_CHARNUM + ')">' + prj.career + '</textarea>';
                     break;
                 case "技術キーワード":
                     cell4 = row.insertCell(-1);
                     // console.log("prj.keyword = " + prj.keyword);
-                    cell4.innerHTML = '<textarea rows="10" cols="17" onchange="verifyText(this, ' + KEYWORD_MAX_CHARNUM + ')">' + prj.keyword + '</textarea>';
+                    cell4.innerHTML = '<textarea rows="10" cols="17" style="width: 96%; height: 100%; resize: none"  onchange="verifyText(this, ' + KEYWORD_MAX_CHARNUM + ')">' + prj.keyword + '</textarea>';
                     break;
                 case "業務種別":
                     // console.log("prj.management  = " + prj.management);
@@ -92,7 +92,7 @@ function createTable(jsonParse) {
                 case "メモ":
                     cell6 = row.insertCell(-1);
                     // console.log("prj.memo = " + prj.memo);
-                    cell6.innerHTML = '<textarea rows="10" cols="26">' + prj.memo + '</textarea>';
+                    cell6.innerHTML = '<textarea rows="10" cols="26" style="width: 96%; height: 100%; resize: none">' + prj.memo + '</textarea>';
                     break;
                 default:
 
@@ -103,7 +103,7 @@ function createTable(jsonParse) {
     // console.log("jsonParse.qualification = " + jsonParse.qualification);
     row = outputTable.insertRow(-1);
     cell1 = row.insertCell(-1);
-    cell1.innerHTML = '<textarea rows="10" cols="178" onchange="verifyText(this, ' + QUALIFICATION_MAX_CHARNUM + ')">' + jsonParse.qualification + '</textarea>';
+    cell1.innerHTML = '<label>資格</label><br><textarea rows="10" cols="92" style="width:99%; height:100%; resize: none" onchange="verifyText(this, ' + QUALIFICATION_MAX_CHARNUM + ')">' + jsonParse.qualification + '</textarea>';
     cell1.colSpan = 6; // セル結合のつもりだけど、うまく効かない
 }
 
@@ -166,15 +166,18 @@ function insertRow(obj) {
     // セルの内容入力
     cell1.innerHTML = index + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)"><br><input type="checkbox" id="hideRow" onchange="hideRow(this)">行を非表示';
     cell2.innerHTML = '<input name="startMonth" type="month" onchange="setDate(this, 0)">' + '<br>～' + '<input name="endMonth" type="month" onchange="setDate(this, 1)">' + '<br>(0ヶ月)';
-    cell3.innerHTML = '<textarea rows="10" cols="50" onchange="verifyText(this, ' + ONEPROJECT_MAX_CHARNUM + ')"></textarea>';
-    cell4.innerHTML = '<textarea rows="10" cols="17" onchange="verifyText(this, ' + KEYWORD_MAX_CHARNUM + ')"></textarea>';
+    cell3.innerHTML = '<textarea rows="10" cols="50" style="width: 98%; height: 100%; resize: none" onchange="verifyText(this, ' + ONEPROJECT_MAX_CHARNUM + ')"></textarea>';
+    cell4.innerHTML = '<textarea rows="10" cols="17" style="width: 96%; height: 100%; resize: none"  onchange="verifyText(this, ' + KEYWORD_MAX_CHARNUM + ')"></textarea>';
     cell5.innerHTML = '<input type="checkbox" id="check1">管理<input type="checkbox" id="check2">設計<input type="checkbox" id="check3">開発<input type="checkbox" id="check4">評価<input type="checkbox" id="check5">他';
-    cell6.innerHTML = '<textarea rows="10" cols="26"></textarea>';
+    cell6.innerHTML = '<textarea rows="10" cols="26" style="width: 98%; height: 100%; resize: none"></textarea>';
 
     renumTable();
 }
 
 function deleteRow(obj) {
+    let outputTable = document.getElementById("outputTable");
+    let row;
+
     if (outputTable.rows.length == 3) {
         return;
     }
