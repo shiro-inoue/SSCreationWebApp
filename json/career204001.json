@@ -11,7 +11,7 @@
 			},
 			{
 				"title": "経歴",
-				"career": "雑貨販売及び仕入れ\n副店長業務（顧客への商品の販売及び説明）\n専用端末を使用した受注/発注業務\nExcelを使用した顧客、商品の管理\nメンバ管理（2名）/各種クレーム対応\n各種クレーム対応\n3～5名"
+				"career": "1雑貨販売及び仕入れ\n副店長業務（顧客への商品の販売及び説明）\n専用端末を使用した受注/発注業務\nExcelを使用した顧客、商品の管理\nメンバ管理（2名）/各種クレーム対応\n各種クレーム対応\n3～5名"
 			},
 			{
 				"title": "技術キーワード",
@@ -38,7 +38,7 @@
 			},
 			{
 				"title": "経歴",
-				"career": "専門学校にてパソコンインストラクターコースを受講\nMS Word/Excelの基本/応用機能の理解\n各種生徒への指導方法\n飲食店にて接客業務\n顧客への接客業務\nPowerPointを使用した客先向プレゼン資料作成\nWord/Excelを使用した社内会議資料作成\n顧客への商品説明、及び電話対応（クレーム等）\n予算/メンバ管理（3名）\n3～5名"
+				"career": "2専門学校にてパソコンインストラクターコースを受講\nMS Word/Excelの基本/応用機能の理解\n各種生徒への指導方法\n飲食店にて接客業務\n顧客への接客業務\nPowerPointを使用した客先向プレゼン資料作成\nWord/Excelを使用した社内会議資料作成\n顧客への商品説明、及び電話対応（クレーム等）\n予算/メンバ管理（3名）\n3～5名"
 			},
 			{
 				"title": "技術キーワード",
@@ -65,7 +65,169 @@
 			},
 			{
 				"title": "経歴",
-				"career": "プリンタドライバ評価及びインストーラ評価\nドライバー機能評価及び出力結果評価\nインストーラ機能評価\nチェックリスト作成、修正\nドライバ設定変更による出力結果の確認\n画面と比較した印字結果の確認\n障害切り分け、障害票起票、修正確認、障害調査\nテストデータ作成（VB）\n手順書等各種ドキュメント作成\nスケジュール・工程管理、メンバー管理(2名)\n3～5名"
+				"career": "3プリンタドライバ評価及びインストーラ評価\nドライバー機能評価及び出力結果評価\nインストーラ機能評価\nチェックリスト作成、修正\nドライバ設定変更による出力結果の確認\n画面と比較した印字結果の確認\n障害切り分け、障害票起票、修正確認、障害調査\nテストデータ作成（VB）\n手順書等各種ドキュメント作成\nスケジュール・工程管理、メンバー管理(2名)\n3～5名"
+			},
+			{
+				"title": "技術キーワード",
+				"keyword": "Windows 2000/XP\nPhotoshop\nIllustrator\nMS Word/Excel\nVB"
+			},
+			{
+				"title": "業務種別",
+				"management": true,
+				"design": false,
+				"development": false,
+				"evaluation": true,
+				"other": false
+			},
+			{
+				"title": "メモ",
+				"memo": ""
+			}
+		],
+		[
+			{
+				"title": "期間",
+				"start": "2001-04",
+				"end": "2003-07"
+			},
+			{
+				"title": "経歴",
+				"career": "4雑貨販売及び仕入れ\n副店長業務（顧客への商品の販売及び説明）\n専用端末を使用した受注/発注業務\nExcelを使用した顧客、商品の管理\nメンバ管理（2名）/各種クレーム対応\n各種クレーム対応\n3～5名"
+			},
+			{
+				"title": "技術キーワード",
+				"keyword": "Windows 2000\nMS Excel"
+			},
+			{
+				"title": "業務種別",
+				"management": false,
+				"design": false,
+				"development": false,
+				"evaluation": false,
+				"other": true
+			},
+			{
+				"title": "メモ",
+				"memo": "この欄は自由に記載ができます\nプレビュー・PDF出力の対象外です"
+			}
+		],
+		[
+			{
+				"title": "期間",
+				"start": "2003-08",
+				"end": "2003-12"
+			},
+			{
+				"title": "経歴",
+				"career": "5専門学校にてパソコンインストラクターコースを受講\nMS Word/Excelの基本/応用機能の理解\n各種生徒への指導方法\n飲食店にて接客業務\n顧客への接客業務\nPowerPointを使用した客先向プレゼン資料作成\nWord/Excelを使用した社内会議資料作成\n顧客への商品説明、及び電話対応（クレーム等）\n予算/メンバ管理（3名）\n3～5名"
+			},
+			{
+				"title": "技術キーワード",
+				"keyword": "Windows 2000\nWindows XP\nMS Word/Excel\nMS PowerPoint"
+			},
+			{
+				"title": "業務種別",
+				"management": false,
+				"design": false,
+				"development": false,
+				"evaluation": false,
+				"other": true
+			},
+			{
+				"title": "メモ",
+				"memo": "自由記載\nプレビュー・PDF出力の象外"
+			}
+		],
+		[
+			{
+				"title": "期間",
+				"start": "2004-12",
+				"end": "2010-12"
+			},
+			{
+				"title": "経歴",
+				"career": "6プリンタドライバ評価及びインストーラ評価\nドライバー機能評価及び出力結果評価\nインストーラ機能評価\nチェックリスト作成、修正\nドライバ設定変更による出力結果の確認\n画面と比較した印字結果の確認\n障害切り分け、障害票起票、修正確認、障害調査\nテストデータ作成（VB）\n手順書等各種ドキュメント作成\nスケジュール・工程管理、メンバー管理(2名)\n3～5名"
+			},
+			{
+				"title": "技術キーワード",
+				"keyword": "Windows 2000/XP\nPhotoshop\nIllustrator\nMS Word/Excel\nVB"
+			},
+			{
+				"title": "業務種別",
+				"management": true,
+				"design": false,
+				"development": false,
+				"evaluation": true,
+				"other": false
+			},
+			{
+				"title": "メモ",
+				"memo": ""
+			}
+		],
+		[
+			{
+				"title": "期間",
+				"start": "2001-04",
+				"end": "2003-07"
+			},
+			{
+				"title": "経歴",
+				"career": "7雑貨販売及び仕入れ\n副店長業務（顧客への商品の販売及び説明）\n専用端末を使用した受注/発注業務\nExcelを使用した顧客、商品の管理\nメンバ管理（2名）/各種クレーム対応\n各種クレーム対応\n3～5名"
+			},
+			{
+				"title": "技術キーワード",
+				"keyword": "Windows 2000\nMS Excel"
+			},
+			{
+				"title": "業務種別",
+				"management": false,
+				"design": false,
+				"development": false,
+				"evaluation": false,
+				"other": true
+			},
+			{
+				"title": "メモ",
+				"memo": "この欄は自由に記載ができます\nプレビュー・PDF出力の対象外です"
+			}
+		],
+		[
+			{
+				"title": "期間",
+				"start": "2003-08",
+				"end": "2003-12"
+			},
+			{
+				"title": "経歴",
+				"career": "8専門学校にてパソコンインストラクターコースを受講\nMS Word/Excelの基本/応用機能の理解\n各種生徒への指導方法\n飲食店にて接客業務\n顧客への接客業務\nPowerPointを使用した客先向プレゼン資料作成\nWord/Excelを使用した社内会議資料作成\n顧客への商品説明、及び電話対応（クレーム等）\n予算/メンバ管理（3名）\n3～5名"
+			},
+			{
+				"title": "技術キーワード",
+				"keyword": "Windows 2000\nWindows XP\nMS Word/Excel\nMS PowerPoint"
+			},
+			{
+				"title": "業務種別",
+				"management": false,
+				"design": false,
+				"development": false,
+				"evaluation": false,
+				"other": true
+			},
+			{
+				"title": "メモ",
+				"memo": "自由記載\nプレビュー・PDF出力の象外"
+			}
+		],
+		[
+			{
+				"title": "期間",
+				"start": "2004-12",
+				"end": "2010-12"
+			},
+			{
+				"title": "経歴",
+				"career": "9プリンタドライバ評価及びインストーラ評価\nドライバー機能評価及び出力結果評価\nインストーラ機能評価\nチェックリスト作成、修正\nドライバ設定変更による出力結果の確認\n画面と比較した印字結果の確認\n障害切り分け、障害票起票、修正確認、障害調査\nテストデータ作成（VB）\n手順書等各種ドキュメント作成\nスケジュール・工程管理、メンバー管理(2名)\n3～5名"
 			},
 			{
 				"title": "技術キーワード",
@@ -85,5 +247,5 @@
 			}
 		]
 	],
-	"qualification": "情報処理技術者試験二種\nORACLE Master Silver\nJSTQB認定テスト技術者資格 Foundation Level"
+	"qualification": "応用情報技術者\n情報処理技術者試験二種\nORACLE Master Silver\nJSTQB認定テスト技術者資格 Foundation Level\nTOEIC800点"
 }
