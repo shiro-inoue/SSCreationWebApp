@@ -148,7 +148,7 @@ const UPDATE_VALUE_X = LEFT_MARGIN + 2100;
 // const UNDER_LINE_Y = TOP_MARGIN + CONTENT_ROW_Y + 220;
 
 // １プロジェクトの最大行数
-const ONEPROJECT_MAX_LINENUM = 57;
+const ONEPROJECT_MAX_LINENUM = 56;
 // 経歴欄の最大文字数
 const ONEPROJECT_MAX_CHARNUM = 50;
 // 技術キーワードの最大文字数

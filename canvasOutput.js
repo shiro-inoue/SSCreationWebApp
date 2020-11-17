@@ -22,18 +22,20 @@ function previewSS() {
             + '<title>' + "スキルシートプレビュー" + '</title>'
             + '</head>'
             + '<body style="margin:0;padding:0;border:0;">'
-            // + '<canvas id="previewMainCanvas" width="2894" height="4093"></canvas>'
-            + '<canvas id="previewMainCanvas" width="5788" height="8186"></canvas>'
+            + '<canvas id="previewMainCanvas"></canvas>'
             + '</body>'
             + '</html>'
         );
         pop_win.window.document.close();
     }
     let mainCanvas = pop_win.document.getElementById('previewMainCanvas');
+    mainCanvas.width = A4_PAPER_WIDTH;
+    mainCanvas.height = A4_PAPER_HEIGHT * canvasArr.length;
     let mainContext = mainCanvas.getContext('2d');
     mainContext.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+    mainContext.scale(0.4, 0.4);
     let drawOffset = 0;
-    console.log("canvasArr.length = " + canvasArr.length);
+    // console.log("canvasArr.length = " + canvasArr.length);
     canvasArr.forEach(canvas => {
         mainContext.drawImage(canvas, 0, drawOffset);
         drawOffset += A4_PAPER_HEIGHT;
@@ -338,9 +340,7 @@ function outputFooter(row, offset) {
         // console.log("***** qualificationRowHeight <- " + qualificationRowHeight);
     }
 
-    context.strokeStyle = "red";
     context.strokeRect(LEFT_MARGIN, offset, DRAWING_AREA_WIDTH, qualificationRowHeight);
-    context.strokeStyle = "black";
     context.font = "48px ＭＳ Ｐゴシック";
     context.fillStyle = 'rgb(0, 0, 0)';
     context.fillText("資格", STRING_QUALIFICATION_X, STRING_QUALIFICATION_Y + offset);
