@@ -10,6 +10,7 @@
     <script src="canvasOutput.js"></script>
     <script src="fileIO.js"></script>
     <script src="./jsPDF/dist/jspdf.umd.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -39,10 +40,31 @@
     </table>
 
     <br>
-    <input type="button" value="PDF出力" id="outputPDF" onclick="outputPDF()">
-    <input type="file" value="import" id="readJSON" onchange="readJSON()">
-    <input type="button" value="export" id="writeJSON" onclick="writeJSON()">
-    <input type="button" value="SSプレビュー" id="previewSS" onclick="previewSS()">
+    <label>
+        <div class="buttonbox">
+           PDF出力
+          </div>
+          <input type="button" value="PDF出力" id="outputPDF" onclick="outputPDF()">
+    </label> 
+    <label>
+        <div class="buttonbox">
+           経歴ファイル選択
+          </div>
+    <input type="file" value="経歴ファイル選択" id="readJSON" onchange="readJSON()">
+    </label>
+    <label>
+        <div class="buttonbox">
+            経歴ファイル出力
+          </div>
+          <input type="button" value="経歴ファイル出力" id="writeJSON" onclick="writeJSON()">
+    </label>
+
+    <label>
+        <div class="buttonbox">
+            SSプレビュー
+          </div>
+          <input type="button" value="SSプレビュー" id="previewSS" onclick="previewSS()">
+    </label>
     <br>
 
     <h2>経歴書</h2>
