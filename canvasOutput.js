@@ -279,8 +279,8 @@ function outputContents(row, offset, index) {
     context.strokeRect(PERIOD_FIELD_X, offset, 260, contentRowHeight);
     context.font = "48px ＭＳ 明朝";
     context.fillStyle = 'rgb(0, 0, 0)';
-    context.fillText(row.cells[1].getElementsByTagName("input")[0].value, CONTENT_START_X, CONTENT_START_Y + offset);
-    context.fillText(row.cells[1].getElementsByTagName("input")[1].value, CONTENT_END_X, CONTENT_END_Y + offset);
+    context.fillText(formatingDate(row.cells[1].getElementsByTagName("input")[0].value) + "～", CONTENT_START_X, CONTENT_START_Y + offset);
+    context.fillText(formatingDate(row.cells[1].getElementsByTagName("input")[1].value), CONTENT_END_X, CONTENT_END_Y + offset);
     let period = calcPeriod(row.cells[1].getElementsByTagName("input")[0].value, row.cells[1].getElementsByTagName("input")[1].value);
     context.fillText("(" + period + "ヶ月)", CONTENT_PERIOD_X, CONTENT_PERIOD_Y + offset);
 
@@ -394,4 +394,14 @@ function readNextRow(i) {
         }
     }
     return false;
+}
+
+function formatingDate(date) {
+    console.log("<*><*><*><*><*> date = " + date);
+    let year = date.substr(0, 4);
+    let month = date.substr(5, 2);
+    if (month[0] == "0") {
+        month = month[1];
+    }
+    return year + "/" + month;
 }
