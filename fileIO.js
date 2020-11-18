@@ -18,64 +18,34 @@ function writeJSON() {
 }
 
 function outputPDF() {
-
     canvasArr = outputSS();
-
-    let cvsPdf = document.createElement('canvas');
-    cvsPdf.width = A4_PAPER_WIDTH;
-    cvsPdf.height = A4_PAPER_HEIGHT * canvasArr.length;
-    let ctxPdf = cvsPdf.getContext('2d');
-    console.log("cvsPdf.width = " + cvsPdf.width);
-    console.log("cvsPdf.height = " + cvsPdf.height);
-    // ctxPdf.clearRect(0, 0, cvsPdf.width, cvsPdf.height);
-    // let drawOffset = 0;
-    // console.log("canvasArr.length = " + canvasArr.length);
-    // canvasArr.forEach(canvas => {
-    //     mainContext.drawImage(canvas, 0, drawOffset);
-    //     drawOffset += A4_PAPER_HEIGHT;
-    // });
-
-
-    // // let cvsPreview = document.getElementById('previewCanvas');
-    // let cvsPdf = document.createElement('canvas');
-    // cvsPdf.width = A4_PAPER_WIDTH;
-    // cvsPdf.height = A4_PAPER_HEIGHT;
-    // let ctxPdf = cvsPdf.getContext('2d');
+    console.log("canvasArr.length = " + canvasArr.length);
     let pdf = jspdf.jsPDF('p', 'pt', 'a4');
 
-    // // A4ではwidth:595.28, height:841.89
+    // A4ではwidth:595.28, height:841.89
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
     console.log("pageWidth = " + pageWidth);
     console.log("pageHeight = " + pageHeight);
 
-    // // サイズは暫定
-    // cvsPdf.width = pageWidth;
-    // cvsPdf.height = pageHeight;
-    ctxPdf.fillStyle = 'rgb(255,255,255)';
-    ctxPdf.fillRect(0, 0, cvsPdf.width, cvsPdf.height);
-
-    let drawOffset = 0;
-    console.log("canvasArr.length = " + canvasArr.length);
-    // let image = cvsPdf.toDataURL('image/jpeg');
+    let flag = true;
     canvasArr.forEach(canvas => {
-        ctxPdf.drawImage(canvas, 0, drawOffset);
-        // ctxPdf.drawImage(canvas, 0, 0, A4_PAPER_WIDTH, A4_PAPER_HEIGHT, 0, 0, pageWidth, drawOffset);
-        // ctxPdf.drawImage(canvas, 0, 0, 600, 900, 0, 0, cvsPdf.width, cvsPdf.height);
-        // ctxPdf.drawImage(canvas, 0, 0, cvsPreview.width, cvsPreview.height, 0, 0, cvsPdf.width, cvsPdf.height);
-        // pdf.addImage(image, 'JPG', 0, 0, pageWidth, drawOffset);
-        // pdf.addPage();
-        drawOffset += pageHeight;
-        // drawOffset += A4_PAPER_HEIGHT;
-        console.log("drawOffset = " + drawOffset);
-    });
-    console.log("drawOffset = " + drawOffset);
+        let cvsPdf = document.createElement('canvas');
+        cvsPdf.width = A4_PAPER_WIDTH;
+        cvsPdf.height = A4_PAPER_HEIGHT;
+        let ctxPdf = cvsPdf.getContext('2d');
+        console.log("cvsPdf.width = " + cvsPdf.width);
+        console.log("cvsPdf.height = " + cvsPdf.height);
+        ctxPdf.fillStyle = 'rgb(255,255,255)';
+        ctxPdf.fillRect(0, 0, cvsPdf.width, cvsPdf.height);
 
-    let image = cvsPdf.toDataURL('image/jpeg');
-    pdf.addImage(image, 'JPG', 0, 0, pageWidth, drawOffset);
-    // pdf.addImage(image, 'JPG', 0, 0, cvsPdf.width, drawOffset);
-    pdf.addPage();
-    // pdf.addImage(image, 'JPG', (pageWidth - cvsPdf.width) / 2, (pageHeight - cvsPdf.height) / 2, cvsPdf.width, cvsPdf.height);
+        ctxPdf.drawImage(canvas, 0, 0);
+        let image = cvsPdf.toDataURL('image/jpeg');
+        pdf.addImage(image, 'JPG', 0, 0, pageWidth, pageHeight);
+        pdf.addPage();
+    });
+    pdf.deletePage(canvasArr.length + 1);
+
     let employeeName = getEmployeeName();
     if (employeeName.length != 0) {
         pdf.save(employeeName);
