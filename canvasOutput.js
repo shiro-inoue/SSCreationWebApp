@@ -3,7 +3,7 @@ let context;
 let canvasArr = [];
 let canvasNum = 1;
 let outputTable;
-let pageHeight;
+let nextOffset;
 
 function previewSS() {
 
@@ -56,15 +56,13 @@ function outputMain() {
     outputHeader();
 
     outputTable = document.getElementById("outputTable");
-    pageHeight = CONTENT_ROW_Y;
     let row;
     let offset = CONTENT_ROW_Y;
-    let nextOffset;
     for (let i = 1; i < outputTable.children[0].children.length - 1; i++) {
         row = outputTable.children[0].children[i];
-        console.log("offset = " + offset);
-        nextOffset = outputContents(row, offset, i);
-        console.log("nextOffset = " + nextOffset);
+        // console.log("offset = " + offset);
+        outputContents(row, offset, i);
+        // console.log("nextOffset = " + nextOffset);
         if (nextOffset == TOP_MARGIN) {
             createCanvas();
         }
@@ -220,51 +218,13 @@ function outputHeader() {
 
 function outputContents(row, offset, index) {
     let messages;
-    let flag = false;
-    let nextOffset = 0;
-
-    // console.log(row.cells[1].getElementsByTagName("input")[0].value);
-    // console.log(row.cells[1].getElementsByTagName("input")[1].value);
-    // console.log(row.cells[2].getElementsByTagName("textarea")[0].value);
-    // console.log(row.cells[3].getElementsByTagName("textarea")[0].value);
-    // console.log(row.cells[4].getElementsByTagName("input")[0].checked);
-    // console.log(row.cells[4].getElementsByTagName("input")[1].checked);
-    // console.log(row.cells[4].getElementsByTagName("input")[2].checked);
-    // console.log(row.cells[4].getElementsByTagName("input")[3].checked);
-    // console.log(row.cells[4].getElementsByTagName("input")[4].checked);
-
     let isHide = row.cells[0].getElementsByTagName("input")[2].checked;
     if (isHide) {
-        return offset;
+        nextOffset = offset;
+        return;
     }
 
-    let careerHeight = (row.cells[2].getElementsByTagName("textarea")[0].value.split('\n')).length;
-    let keywordHeight = (row.cells[3].getElementsByTagName("textarea")[0].value.split('\n')).length;
-    // console.log("***** careerHeight = " + careerHeight);
-    // console.log("***** keywordHeight = " + keywordHeight);
-    let textHeight = (careerHeight > keywordHeight) ? careerHeight : keywordHeight;
-    let contentRowHeight = NUMBER_LINE_PIXEL * textHeight + 50;
-
-    if (contentRowHeight < CONTENT_ROW_HEIGHT) {
-        // console.log("***** contentRowHeight -> " + contentRowHeight);
-        contentRowHeight = CONTENT_ROW_HEIGHT;
-        // console.log("***** contentRowHeight <- " + contentRowHeight);
-    }
-    nextOffset = offset + contentRowHeight;
-
-    pageHeight += contentRowHeight;
-    // console.log("***** contentRowHeight = " + contentRowHeight);
-    // console.log("***** pageHeight = " + pageHeight);
-
-    // flag = readNextRow(index, pageHeight);
-    flag = readNextRow(index);
-    console.log("***** readNextRow = " + flag);
-
-    if (flag) {
-        contentRowHeight += A4_PAPER_HEIGHT - pageHeight;
-        console.log("********** pageHeight = " + pageHeight);
-        console.log("********** contentRowHeight = " + contentRowHeight);
-    }
+    contentRowHeight = getRowHeight(row, offset, index);
 
     // 内容の大枠
     context.strokeRect(LEFT_MARGIN, offset, DRAWING_AREA_WIDTH, contentRowHeight);
@@ -318,28 +278,15 @@ function outputContents(row, offset, index) {
         context.fillText((row.cells[4].getElementsByTagName("input")[i].checked) ? "*" : "", BUSINESSTYPE_FIELD_X + BUSINESSTYPE_FIELD_WIDTH * i + 20, NUMBER_LINE_PIXEL + offset);
     }
 
-    if (flag) {
-        pageHeight = 0;
-        nextOffset = TOP_MARGIN;
-    }
-
-    return nextOffset;
+    return;
 }
 
 function outputFooter(row, offset) {
     let messages;
 
+    let qualificationRowHeight = getQualificationRowHeight(row);
+
     // 資格の大枠
-    // console.log("length = " + row.cells[0].getElementsByTagName("textarea")[0].value.split('\n').length);
-    let qualificationRowHeight = NUMBER_LINE_PIXEL * (row.cells[0].getElementsByTagName("textarea")[0].value.split('\n').length + 1) + 50;
-    // console.log("qualificationRowHeight = " + qualificationRowHeight);
-
-    if (qualificationRowHeight < QUALIFICATION_ROW_HEIGHT) {
-        // console.log("***** qualificationRowHeight -> " + qualificationRowHeight);
-        contentRowHeight = QUALIFICATION_ROW_HEIGHT;
-        // console.log("***** qualificationRowHeight <- " + qualificationRowHeight);
-    }
-
     context.strokeRect(LEFT_MARGIN, offset, DRAWING_AREA_WIDTH, qualificationRowHeight);
     context.font = "48px ＭＳ Ｐゴシック";
     context.fillStyle = 'rgb(0, 0, 0)';
@@ -365,39 +312,82 @@ function outputFooter(row, offset) {
     context.fillRect(LEFT_MARGIN, underLineY + offset, DRAWING_AREA_WIDTH, 20);
 }
 
-// function readNextRow(i, pageHeight) {
-function readNextRow(i) {
-    if (i + 2 < outputTable.children[0].children.length) {
-        let row = outputTable.children[0].children[i + 1];
-        let isHide = row.cells[0].getElementsByTagName("input")[2].checked;
+function getRowHeight(row, offset, index) {
+    let contentRowHeight = getContentRowHeight(row);
+    let drawHeight;
+
+    if (index + 2 < outputTable.children[0].children.length) {
+        let nextRow = outputTable.children[0].children[index + 1];
+        let isHide = nextRow.cells[0].getElementsByTagName("input")[2].checked;
 
         if (isHide) {
-            console.log(">>>>> isHide = " + isHide);
-            return readNextRow(i + 1);
+            // console.log("isHide = " + isHide);
+            return getRowHeight(row, offset, index + 1);
         }
 
-        let careerHeight = (row.cells[2].getElementsByTagName("textarea")[0].value.split('\n')).length;
-        let keywordHeight = (row.cells[3].getElementsByTagName("textarea")[0].value.split('\n')).length;
-        // console.log(">>>>> careerHeight = " + careerHeight);
-        // console.log(">>>>> keywordHeight = " + keywordHeight);
-        let textHeight = (careerHeight > keywordHeight) ? careerHeight : keywordHeight;
-        let contentRowHeight = NUMBER_LINE_PIXEL * textHeight + 50;
-
-        console.log(">>>>> contentRowHeight = " + contentRowHeight);
-        console.log(">>>>> pageHeight = " + pageHeight);
-
-        console.log(">>>>> A4_PAPER_HEIGHT = " + A4_PAPER_HEIGHT);
-        console.log(">>>>> pageHeight + contentRowHeight = " + (pageHeight + contentRowHeight));
-        if (A4_PAPER_HEIGHT < pageHeight + contentRowHeight) {
-            // console.log(">>>>>>>>>> contentRowHeight = " + contentRowHeight);
-            return true;
-        }
+        let nextRowHeight = getContentRowHeight(nextRow);
+        // console.log("nextRowHeight = " + nextRowHeight);
+        drawHeight = offset + contentRowHeight + nextRowHeight;
+        // console.log("drawHeight = " + drawHeight);
     }
-    return false;
+    else {
+        let qualificationRow = outputTable.children[0].children[outputTable.children[0].children.length - 1];
+        let qualificationRowHeight = getQualificationRowHeight(qualificationRow);
+
+        let qualificationFooterRowHeight = qualificationRowHeight + 100; // 100=資格欄を除いたフッター部を高さ100で描画している
+
+        drawHeight = offset + contentRowHeight + qualificationFooterRowHeight;
+        // console.log("drawHeight = " + drawHeight);
+    }
+
+    if (A4_PAPER_HEIGHT < drawHeight) {
+        contentRowHeight = A4_PAPER_HEIGHT - offset - BOTTOM_MARGIN;
+        nextOffset = TOP_MARGIN;
+    }
+    else {
+        nextOffset = offset + contentRowHeight;
+    }
+    // console.log("nextOffset = " + nextOffset);
+
+    // console.log("contentRowHeight = " + contentRowHeight);
+    return contentRowHeight;
+}
+
+function getContentRowHeight(row) {
+    let careerHeight = (row.cells[2].getElementsByTagName("textarea")[0].value.split('\n')).length;
+    let keywordHeight = (row.cells[3].getElementsByTagName("textarea")[0].value.split('\n')).length;
+    // console.log("careerHeight = " + careerHeight);
+    // console.log("keywordHeight = " + keywordHeight);
+    let textHeight = (careerHeight > keywordHeight) ? careerHeight : keywordHeight;
+    let rowHeight = NUMBER_LINE_PIXEL * textHeight + 50;
+    // console.log("textHeight = " + textHeight);
+    // console.log("rowHeight = " + rowHeight);
+
+    if (rowHeight < CONTENT_ROW_HEIGHT) {
+        // console.log("rowHeight -> " + rowHeight);
+        rowHeight = CONTENT_ROW_HEIGHT;
+        // console.log("rowHeight <- " + rowHeight);
+    }
+    // console.log("rowHeight = " + rowHeight);
+    return rowHeight;
+}
+
+function getQualificationRowHeight(row) {
+    // console.log("length = " + row.cells[0].getElementsByTagName("textarea")[0].value.split('\n').length);
+    let qualificationRowHeight = NUMBER_LINE_PIXEL * (row.cells[0].getElementsByTagName("textarea")[0].value.split('\n').length + 1) + 50;
+    // console.log("qualificationRowHeight = " + qualificationRowHeight);
+
+    if (qualificationRowHeight < QUALIFICATION_ROW_HEIGHT) {
+        // console.log("qualificationRowHeight -> " + qualificationRowHeight);
+        qualificationRowHeight = QUALIFICATION_ROW_HEIGHT;
+        // console.log("qualificationRowHeight <- " + qualificationRowHeight);
+    }
+    // console.log("qualificationRowHeight = " + qualificationRowHeight);
+    return qualificationRowHeight;
 }
 
 function formatingDate(date) {
-    console.log("<*><*><*><*><*> date = " + date);
+    // console.log("<*><*><*><*><*> date = " + date);
     let year = date.substr(0, 4);
     let month = date.substr(5, 2);
     if (month[0] == "0") {
