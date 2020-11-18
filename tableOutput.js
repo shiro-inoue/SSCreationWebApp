@@ -147,9 +147,9 @@ function setDate(obj, index) {
 }
 
 function insertRow(obj) {
-    if (!window.confirm("行を挿入しますか？")) {
-        return;
-    }
+    //if (!window.confirm("行を挿入しますか？")) {
+    //    return;
+    //}
 
     let outputTable = document.getElementById("outputTable");
     // 挿入ボタンを押下された行を取得

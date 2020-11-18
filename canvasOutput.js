@@ -98,6 +98,31 @@ function createCanvas() {
     canvasArr.push(canvas);
 }
 
+function getIDNumber(){
+    let idNum;
+    let infoTable = document.getElementById("infoTable");
+    // console.log("infoTable.rows.length = " + infoTable.rows.length);
+
+    let cells = infoTable.rows[0].cells[1];
+    let id = cells.getElementsByTagName("input")[0].value;
+    // console.log("id = " + id);
+    cells = infoTable.rows[1].cells[1];
+    let lastName = cells.getElementsByTagName("input")[0].value;
+    let firstName = cells.getElementsByTagName("input")[1].value;
+    // console.log("lastName = " + lastName);
+    // console.log("firstName = " + firstName);
+    cells = infoTable.rows[2].cells[1];
+    let lastNameR = cells.getElementsByTagName("input")[0].value;
+    let firstNameR = cells.getElementsByTagName("input")[1].value;
+    // console.log("lastNameR = " + lastNameR);
+    // console.log("firstNameR = " + firstNameR);
+
+    idNum = lastNameR.substr(0, 2) + id + lastNameR.substr(2, 2); // ローマ字未入力でも落ちはしないが
+
+    return idNum;
+}
+
+
 function outputHeader() {
     context.font = "96px ＭＳ Ｐゴシック";
     context.fillText("経歴書", LEFT_MARGIN, STRING_CV_Y);
@@ -136,24 +161,25 @@ function outputHeader() {
     context.fillStyle = 'rgb(0, 0, 0)';
 
     let idNum;
-    let infoTable = document.getElementById("infoTable");
-    // console.log("infoTable.rows.length = " + infoTable.rows.length);
-
-    let cells = infoTable.rows[0].cells[1];
-    let id = cells.getElementsByTagName("input")[0].value;
-    // console.log("id = " + id);
-    cells = infoTable.rows[1].cells[1];
-    let lastName = cells.getElementsByTagName("input")[0].value;
-    let firstName = cells.getElementsByTagName("input")[1].value;
-    // console.log("lastName = " + lastName);
-    // console.log("firstName = " + firstName);
-    cells = infoTable.rows[2].cells[1];
-    let lastNameR = cells.getElementsByTagName("input")[0].value;
-    let firstNameR = cells.getElementsByTagName("input")[1].value;
-    // console.log("lastNameR = " + lastNameR);
-    // console.log("firstNameR = " + firstNameR);
-
-    idNum = lastNameR.substr(0, 2) + id + lastNameR.substr(2, 2); // ローマ字未入力でも落ちはしないが
+//    let infoTable = document.getElementById("infoTable");
+//    // console.log("infoTable.rows.length = " + infoTable.rows.length);
+//
+//    let cells = infoTable.rows[0].cells[1];
+//    let id = cells.getElementsByTagName("input")[0].value;
+//    // console.log("id = " + id);
+//    cells = infoTable.rows[1].cells[1];
+//    let lastName = cells.getElementsByTagName("input")[0].value;
+//    let firstName = cells.getElementsByTagName("input")[1].value;
+//    // console.log("lastName = " + lastName);
+//    // console.log("firstName = " + firstName);
+//    cells = infoTable.rows[2].cells[1];
+//    let lastNameR = cells.getElementsByTagName("input")[0].value;
+//    let firstNameR = cells.getElementsByTagName("input")[1].value;
+//    // console.log("lastNameR = " + lastNameR);
+//    // console.log("firstNameR = " + firstNameR);
+//
+//    idNum = lastNameR.substr(0, 2) + id + lastNameR.substr(2, 2); // ローマ字未入力でも落ちはしないが
+    idNum = getIDNumber();
     context.fillText(idNum, ID_VALUE_X, ID_VALUE_Y);
 
     // 項番の大枠
