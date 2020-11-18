@@ -46,10 +46,32 @@ function outputPDF() {
     });
     pdf.deletePage(canvasArr.length + 1);
 
-    let employeeName = getEmployeeName();
-    if (employeeName.length != 0) {
-        pdf.save(employeeName);
+    //let employeeName = getEmployeeName();
+    //if (employeeName.length != 0) {
+    //    pdf.save(employeeName);
+    //}
+    let idNum = getIDNumber();
+    if(idNum.length != 0){
+        pdf.save(idNum);
     }
+}
+
+function getIDNumber(){
+    let idNum;
+    let infoTable = document.getElementById("infoTable");
+
+    let cells = infoTable.rows[0].cells[1];
+    let id = cells.getElementsByTagName("input")[0].value;
+    cells = infoTable.rows[1].cells[1];
+    let lastName = cells.getElementsByTagName("input")[0].value;
+    let firstName = cells.getElementsByTagName("input")[1].value;
+    cells = infoTable.rows[2].cells[1];
+    let lastNameR = cells.getElementsByTagName("input")[0].value;
+    let firstNameR = cells.getElementsByTagName("input")[1].value;
+
+    idNum = lastNameR.substr(0, 2) + id + lastNameR.substr(2, 2); // ローマ字未入力でも落ちはしないが
+
+    return idNum;
 }
 
 function getEmployeeName() {
