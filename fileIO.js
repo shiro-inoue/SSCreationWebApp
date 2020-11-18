@@ -45,5 +45,24 @@ function outputPDF() {
         pdf.addPage();
     });
     pdf.deletePage(canvasArr.length + 1);
-    pdf.save('sample.pdf');
+
+    let employeeName = getEmployeeName();
+    if (employeeName.length != 0) {
+        pdf.save(employeeName);
+    }
+}
+
+function getEmployeeName() {
+    let employeeName;
+    let infoTable = document.getElementById("infoTable");
+
+    cells = infoTable.rows[1].cells[1];
+    let lastName = cells.getElementsByTagName("input")[0].value;
+    let firstName = cells.getElementsByTagName("input")[1].value;
+
+    employeeName = lastName + firstName;
+    if (employeeName.length == 0) {
+        alert("氏名を入力してください");
+    }
+    return employeeName;
 }
