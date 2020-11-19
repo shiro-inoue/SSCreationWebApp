@@ -54,6 +54,7 @@ function outputMain() {
     createCanvas();
 
     outputHeader();
+    outputTableHeader(NUMBER_ROW_Y);
 
     outputTable = document.getElementById("outputTable");
     let row;
@@ -63,10 +64,14 @@ function outputMain() {
         // console.log("offset = " + offset);
         outputContents(row, offset, i);
         // console.log("nextOffset = " + nextOffset);
+        offset = nextOffset;
         if (nextOffset == TOP_MARGIN) {
             createCanvas();
+            if (i != outputTable.children[0].children.length - 2) {
+                outputTableHeader(TOP_MARGIN);
+                offset = nextOffset + NUMBER_ROW_HEIGHT;
+            }
         }
-        offset = nextOffset;
     }
 
     row = outputTable.children[0].children[outputTable.children[0].children.length - 1];
@@ -96,7 +101,7 @@ function createCanvas() {
     canvasArr.push(canvas);
 }
 
-function getIDNumber(){
+function getIDNumber() {
     let idNum;
     let infoTable = document.getElementById("infoTable");
     // console.log("infoTable.rows.length = " + infoTable.rows.length);
@@ -120,7 +125,6 @@ function getIDNumber(){
     return idNum;
 }
 
-
 function outputHeader() {
     context.font = "96px ＭＳ Ｐゴシック";
     context.fillText("経歴書", LEFT_MARGIN, STRING_CV_Y);
@@ -140,8 +144,6 @@ function outputHeader() {
 
     context.strokeStyle = 'rgb(0, 0, 0, 0))';
     context.fillStyle = 'rgb(255, 255, 255, 0)'; // 左:0上:100の位置に、幅:580高さ:800の四角の枠線を描く
-    // // 大枠
-    // context.strokeRect(0, 100, 580, 800);
 
     // 識別番号欄
     context.strokeRect(LEFT_MARGIN, ID_ROW_Y, IDTITLE_FIELD_WIDTH, ID_ROW_HEIGHT);
@@ -157,89 +159,73 @@ function outputHeader() {
     // 識別番号
     context.font = "48px ＭＳ 明朝";
     context.fillStyle = 'rgb(0, 0, 0)';
+}
 
+function outputTableHeader(offset) {
     let idNum;
-//    let infoTable = document.getElementById("infoTable");
-//    // console.log("infoTable.rows.length = " + infoTable.rows.length);
-//
-//    let cells = infoTable.rows[0].cells[1];
-//    let id = cells.getElementsByTagName("input")[0].value;
-//    // console.log("id = " + id);
-//    cells = infoTable.rows[1].cells[1];
-//    let lastName = cells.getElementsByTagName("input")[0].value;
-//    let firstName = cells.getElementsByTagName("input")[1].value;
-//    // console.log("lastName = " + lastName);
-//    // console.log("firstName = " + firstName);
-//    cells = infoTable.rows[2].cells[1];
-//    let lastNameR = cells.getElementsByTagName("input")[0].value;
-//    let firstNameR = cells.getElementsByTagName("input")[1].value;
-//    // console.log("lastNameR = " + lastNameR);
-//    // console.log("firstNameR = " + firstNameR);
-//
-//    idNum = lastNameR.substr(0, 2) + id + lastNameR.substr(2, 2); // ローマ字未入力でも落ちはしないが
     idNum = getIDNumber();
     context.fillText(idNum, ID_VALUE_X, ID_VALUE_Y);
 
     // 項番の大枠
-    context.strokeRect(LEFT_MARGIN, NUMBER_ROW_Y, DRAWING_AREA_WIDTH, NUMBER_ROW_HEIGHT);
+    context.strokeRect(LEFT_MARGIN, offset, DRAWING_AREA_WIDTH, NUMBER_ROW_HEIGHT);
 
     // Noの枠
-    context.strokeRect(LEFT_MARGIN, NUMBER_ROW_Y, NUMBER_FIELD_WIDTH, NUMBER_ROW_HEIGHT);
+    context.strokeRect(LEFT_MARGIN, offset, NUMBER_FIELD_WIDTH, NUMBER_ROW_HEIGHT);
     context.font = "48px ＭＳ 明朝";
     context.fillStyle = 'rgb(0, 0, 0)';
-    context.fillText("No", STRING_NO_X, STRING_NO_Y);
+    context.fillText("No", STRING_NO_X, offset + STRING_NO_Y);
 
     // 期間の枠
-    context.strokeRect(PERIOD_FIELD_X, NUMBER_ROW_Y, PERIOD_FIELD_WIDTH, NUMBER_ROW_HEIGHT);
+    context.strokeRect(PERIOD_FIELD_X, offset, PERIOD_FIELD_WIDTH, NUMBER_ROW_HEIGHT);
     context.font = "48px ＭＳ 明朝";
     context.fillStyle = 'rgb(0, 0, 0)';
-    context.fillText("期間", STRING_PERIOD_X, STRING_PERIOD_Y);
+    context.fillText("期間", STRING_PERIOD_X, offset + STRING_PERIOD_Y);
 
     // 経歴の枠
-    context.strokeRect(CAREER_FIELD_X, NUMBER_ROW_Y, CAREER_FIELD_WIDTH, NUMBER_ROW_HEIGHT);
+    context.strokeRect(CAREER_FIELD_X, offset, CAREER_FIELD_WIDTH, NUMBER_ROW_HEIGHT);
     context.font = "48px ＭＳ 明朝";
     context.fillStyle = 'rgb(0, 0, 0)';
-    context.fillText("経歴", STRING_CAREER_X, STRING_CAREER_Y);
+    context.fillText("経歴", STRING_CAREER_X, offset + STRING_CAREER_Y);
 
     // 技術キーワードの枠
-    context.strokeRect(KEYWORD_FIELD_X, NUMBER_ROW_Y, KEYWORD_FIELD_WIDTH, NUMBER_ROW_HEIGHT);
+    context.strokeRect(KEYWORD_FIELD_X, offset, KEYWORD_FIELD_WIDTH, NUMBER_ROW_HEIGHT);
     context.font = "48px ＭＳ 明朝";
     context.fillStyle = 'rgb(0, 0, 0)';
-    context.fillText("技術キーワード", STRING_KEYWORD_X, STRING_KEYWORD_Y);
+    context.fillText("技術キーワード", STRING_KEYWORD_X, offset + STRING_KEYWORD_Y);
 
     // 種別の枠
     context.beginPath(); // 現在のパスをリセット
     context.setLineDash([2, 2]); // 点線の描画方法を指定
     for (let i = 0; i < 4; i++) {
-        context.moveTo(BUSINESSTYPE_FIELD_X + BUSINESSTYPE_FIELD_WIDTH + BUSINESSTYPE_FIELD_WIDTH * i, NUMBER_ROW_Y); // 新しいサブパスの開始点を座標指定
-        context.lineTo(BUSINESSTYPE_FIELD_X + BUSINESSTYPE_FIELD_WIDTH + BUSINESSTYPE_FIELD_WIDTH * i, NUMBER_ROW_Y + NUMBER_ROW_HEIGHT); // 直前の座標と指定座標を結ぶ直線を引く
+        context.moveTo(BUSINESSTYPE_FIELD_X + BUSINESSTYPE_FIELD_WIDTH + BUSINESSTYPE_FIELD_WIDTH * i, offset); // 新しいサブパスの開始点を座標指定
+        context.lineTo(BUSINESSTYPE_FIELD_X + BUSINESSTYPE_FIELD_WIDTH + BUSINESSTYPE_FIELD_WIDTH * i, offset + NUMBER_ROW_HEIGHT); // 直前の座標と指定座標を結ぶ直線を引く
         context.stroke(); // 現在の線スタイルでサブパスを輪郭表示
     }
     context.setLineDash([]); // 第一引数に空の配列を指定すると実線
 
     context.font = "32px ＭＳ 明朝";
     context.fillStyle = 'rgb(0, 0, 0)';
-    context.fillText("管", STRING_BUSINESSTYPE_X, STRING_BUSINESSTYPEUP_Y);
-    context.fillText("理", STRING_BUSINESSTYPE_X, STRING_BUSINESSTYPELO_Y);
+    context.fillText("管", STRING_BUSINESSTYPE_X, offset + STRING_BUSINESSTYPEUP_Y);
+    context.fillText("理", STRING_BUSINESSTYPE_X, offset + STRING_BUSINESSTYPELO_Y);
 
     context.font = "32px ＭＳ 明朝";
     context.fillStyle = 'rgb(0, 0, 0)';
-    context.fillText("設", STRING_BUSINESSTYPE_X + BUSINESSTYPE_FIELD_WIDTH, STRING_BUSINESSTYPEUP_Y);
-    context.fillText("計", STRING_BUSINESSTYPE_X + BUSINESSTYPE_FIELD_WIDTH, STRING_BUSINESSTYPELO_Y);
+    context.fillText("設", STRING_BUSINESSTYPE_X + BUSINESSTYPE_FIELD_WIDTH, offset + STRING_BUSINESSTYPEUP_Y);
+    context.fillText("計", STRING_BUSINESSTYPE_X + BUSINESSTYPE_FIELD_WIDTH, offset + STRING_BUSINESSTYPELO_Y);
 
     context.font = "32px ＭＳ 明朝";
     context.fillStyle = 'rgb(0, 0, 0)';
-    context.fillText("開", STRING_BUSINESSTYPE_X + BUSINESSTYPE_FIELD_WIDTH * 2, STRING_BUSINESSTYPEUP_Y);
-    context.fillText("発", STRING_BUSINESSTYPE_X + BUSINESSTYPE_FIELD_WIDTH * 2, STRING_BUSINESSTYPELO_Y);
+    context.fillText("開", STRING_BUSINESSTYPE_X + BUSINESSTYPE_FIELD_WIDTH * 2, offset + STRING_BUSINESSTYPEUP_Y);
+    context.fillText("発", STRING_BUSINESSTYPE_X + BUSINESSTYPE_FIELD_WIDTH * 2, offset + STRING_BUSINESSTYPELO_Y);
 
     context.font = "32px ＭＳ 明朝";
     context.fillStyle = 'rgb(0, 0, 0)';
-    context.fillText("評", STRING_BUSINESSTYPE_X + BUSINESSTYPE_FIELD_WIDTH * 3, STRING_BUSINESSTYPEUP_Y);
-    context.fillText("価", STRING_BUSINESSTYPE_X + BUSINESSTYPE_FIELD_WIDTH * 3, STRING_BUSINESSTYPELO_Y);
+    context.fillText("評", STRING_BUSINESSTYPE_X + BUSINESSTYPE_FIELD_WIDTH * 3, offset + STRING_BUSINESSTYPEUP_Y);
+    context.fillText("価", STRING_BUSINESSTYPE_X + BUSINESSTYPE_FIELD_WIDTH * 3, offset + STRING_BUSINESSTYPELO_Y);
 
     context.font = "32px ＭＳ 明朝";
     context.fillStyle = 'rgb(0, 0, 0)';
-    context.fillText("他", STRING_BUSINESSTYPE_X + BUSINESSTYPE_FIELD_WIDTH * 4, STRING_BUSINESSTYPEMD_Y);
+    context.fillText("他", STRING_BUSINESSTYPE_X + BUSINESSTYPE_FIELD_WIDTH * 4, offset + STRING_BUSINESSTYPEMD_Y);
 }
 
 function outputContents(row, offset, index) {
@@ -317,7 +303,7 @@ function outputFooter(row, offset) {
     context.font = "48px ＭＳ Ｐゴシック";
     context.fillStyle = 'rgb(0, 0, 0)';
     context.fillText("資格", STRING_QUALIFICATION_X, STRING_QUALIFICATION_Y + offset);
-    // context.fillText("資格", STRING_QUALIFICATION_X, offset);
+    context.fillRect(LEFT_MARGIN, STRING_QUALIFICATION_Y + offset + 10, DRAWING_AREA_WIDTH, 2);
     messages = row.cells[0].getElementsByTagName("textarea")[0].value.split('\n');
     for (let i = 0; i < messages.length; ++i) {
         context.fillText(messages[i], QUALIFICATION_VALUE_X, QUALIFICATION_VALUE_Y + offset + i * NUMBER_LINE_PIXEL);
