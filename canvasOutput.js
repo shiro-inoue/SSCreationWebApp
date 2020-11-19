@@ -7,7 +7,7 @@ let nextOffset;
 
 function previewSS() {
 
-    outputMain();
+    outputPreview();
 
     let pop_win = window.open(
         "",
@@ -44,14 +44,14 @@ function previewSS() {
 
 function outputSS() {
 
-    outputMain();
+    outputPDFFile();
 
     return canvasArr;
 }
 
-function outputMain() {
+function outputPDFFile() {
     canvasArr.length = 0;
-    createCanvas();
+    createCanvas(A4_PAPER_WIDTH, A4_PAPER_HEIGHT);
 
     outputHeader();
     outputTableHeader(NUMBER_ROW_Y);
@@ -66,7 +66,7 @@ function outputMain() {
         // console.log("nextOffset = " + nextOffset);
         offset = nextOffset;
         if (nextOffset == TOP_MARGIN) {
-            createCanvas();
+            createCanvas(A4_PAPER_WIDTH, A4_PAPER_HEIGHT);
             if (i != outputTable.children[0].children.length - 2) {
                 outputTableHeader(TOP_MARGIN);
                 offset = nextOffset + NUMBER_ROW_HEIGHT;
@@ -80,20 +80,46 @@ function outputMain() {
     return;
 }
 
-function createCanvas() {
+function outputPreview() {
+    canvasArr.length = 0;
+    let canvasHeight = getCanvasHeight();
+    createCanvas(A4_PAPER_WIDTH, canvasHeight);
+
+    outputHeader();
+    outputTableHeader(NUMBER_ROW_Y);
+
+    outputTable = document.getElementById("outputTable");
+    let row;
+    let offset = CONTENT_ROW_Y;
+    for (let i = 1; i < outputTable.children[0].children.length - 1; i++) {
+        row = outputTable.children[0].children[i];
+        // console.log("offset = " + offset);
+        outputContents(row, offset, 0);
+        // console.log("nextOffset = " + nextOffset);
+        offset = nextOffset;
+    }
+
+    row = outputTable.children[0].children[outputTable.children[0].children.length - 1];
+    // console.log("offset = " + offset);
+    outputFooter(row, offset);
+
+    return;
+}
+
+function createCanvas(width, height) {
     let canvasName = "previewCanvas" + canvasNum;
     canvasNum++;
     // console.log("canvasName = " + canvasName);
     canvas = document.createElement('canvas');
     canvas.id = canvasName;
-    canvas.width = A4_PAPER_WIDTH;
-    canvas.height = A4_PAPER_HEIGHT;
+    canvas.width = width;
+    canvas.height = height;
     context = canvas.getContext('2d');
 
     context.clearRect(0, 0, canvas.width, canvas.height);
     // デバッグ用の枠線
     context.strokeStyle = "red";
-    context.strokeRect(0, 0, A4_PAPER_WIDTH, A4_PAPER_HEIGHT);
+    context.strokeRect(0, 0, canvas.width, canvas.height);
     context.strokeStyle = "black";
 
     // context.scale(0.3, 0.3);
@@ -236,7 +262,14 @@ function outputContents(row, offset, index) {
         return;
     }
 
-    contentRowHeight = getRowHeight(row, offset, index);
+    let contentRowHeight;
+    if (index != 0) {
+        contentRowHeight = getRowHeight(row, offset, index);
+    }
+    else {
+        contentRowHeight = getContentRowHeight(row);
+        nextOffset = offset + contentRowHeight;
+    }
 
     // 内容の大枠
     context.strokeRect(LEFT_MARGIN, offset, DRAWING_AREA_WIDTH, contentRowHeight);
@@ -245,7 +278,7 @@ function outputContents(row, offset, index) {
     context.strokeRect(LEFT_MARGIN, offset, NUMBER_FIELD_WIDTH, contentRowHeight);
     context.font = "48px ＭＳ 明朝";
     context.fillStyle = 'rgb(0, 0, 0)';
-    context.fillText(row.cells[0].firstChild.nodeValue, CONTENT_NO_X, contentRowHeight / 2 - NUMBER_LINE_PIXEL / 2 + offset);
+    context.fillText(row.cells[0].firstChild.nodeValue, CONTENT_NO_X, offset + NUMBER_LINE_PIXEL);
 
     // 期間の枠
     context.strokeRect(PERIOD_FIELD_X, offset, 260, contentRowHeight);
@@ -396,6 +429,38 @@ function getQualificationRowHeight(row) {
     }
     // console.log("qualificationRowHeight = " + qualificationRowHeight);
     return qualificationRowHeight;
+}
+
+function getCanvasHeight() {
+    outputTable = document.getElementById("outputTable");
+    let row;
+    let canvasHeight = TOP_MARGIN + HEADER_ROW_HEIGHT + ID_ROW_HEIGHT + NUMBER_ROW_HEIGHT + FOOTER_ROW_HEIGHT + BOTTOM_MARGIN;
+
+
+    for (let i = 1; i < outputTable.children[0].children.length - 1; i++) {
+        row = outputTable.children[0].children[i];
+        let isHide = row.cells[0].getElementsByTagName("input")[2].checked;
+
+        if (isHide) {
+            // console.log("isHide = " + isHide);
+            continue;
+        }
+
+        let rowHeight = getContentRowHeight(row);
+        // console.log("rowHeight = " + rowHeight);
+
+        canvasHeight += rowHeight;
+        // console.log("canvasHeight = " + canvasHeight);
+    }
+
+    row = outputTable.children[0].children[outputTable.children[0].children.length - 1];
+    let qualificationRowHeight = getQualificationRowHeight(row);
+    // console.log("qualificationRowHeight = " + qualificationRowHeight);
+
+    canvasHeight += qualificationRowHeight;
+    console.log("canvasHeight = " + canvasHeight);
+
+    return canvasHeight;
 }
 
 function formatingDate(date) {
