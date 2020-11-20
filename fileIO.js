@@ -14,7 +14,9 @@ function readJSON() {
 }
 
 function writeJSON() {
-    alert("writeJSON() 未実装");
+    // alert("writeJSON() ファイル出力を行います");
+
+    MakeJson();
 }
 
 function outputPDF() {
@@ -51,12 +53,12 @@ function outputPDF() {
     //    pdf.save(employeeName);
     //}
     let idNum = getIDNumber();
-    if(idNum.length != 0){
+    if (idNum.length != 0) {
         pdf.save(idNum);
     }
 }
 
-function getIDNumber(){
+function getIDNumber() {
     let idNum;
     let infoTable = document.getElementById("infoTable");
 
@@ -88,3 +90,95 @@ function getEmployeeName() {
     }
     return employeeName;
 }
+
+function MakeJson(filename) {
+
+    let row;
+    var masterData = [];
+    // var masterDatainfo = [];
+    let masterData2 = '';
+
+    let mainObj = new Object();
+
+    mainObj.id = "";
+    mainObj.name = "";
+    mainObj.romaji = "";
+    mainObj.project = [];
+    mainObj.qualification ="";
+
+    let infoTable = document.getElementById("infoTable");
+
+    let cells = infoTable.rows[0].cells[1];
+    let id = cells.getElementsByTagName("input")[0].value;
+
+
+    //基本データ書き込み
+    filename = String(id);
+    cells = infoTable.rows[1].cells[1];
+    let lastName = cells.getElementsByTagName("input")[0].value;
+    let firstName = cells.getElementsByTagName("input")[1].value;
+    cells = infoTable.rows[2].cells[1];
+    let lastNameR = cells.getElementsByTagName("input")[0].value;
+    let firstNameR = cells.getElementsByTagName("input")[1].value;
+
+    mainObj.id = id;
+    mainObj.name = lastName + firstName;
+    mainObj.romaji = lastNameR + firstNameR;
+
+
+    outputTable = document.getElementById("outputTable");
+    for (let i = 1; i < outputTable.children[0].children.length - 1; i++) {
+        row = outputTable.children[0].children[i];
+        row.cells[1].getElementsByTagName("input")[0].value
+
+        let rowObj = [];
+
+        var data1 = new Object();
+        var data2 = new Object();
+        var data3 = new Object();
+        var data4 = new Object();
+        var data5 = new Object();
+
+        data1.title = '期間';
+        data1.start = row.cells[1].getElementsByTagName("input")[0].value;
+        data1.end = row.cells[1].getElementsByTagName("input")[1].value;
+
+        data2.title = '経歴';
+        data2.career = row.cells[2].getElementsByTagName("textarea")[0].value;
+
+        data3.title = '技術キーワード';
+        data3.keyword = row.cells[3].getElementsByTagName("textarea")[0].value;
+
+        data4.title = '業務種別';
+        data4.management = row.cells[4].getElementsByTagName("input")[0].checked;
+        data4.design = row.cells[4].getElementsByTagName("input")[1].checked;
+        data4.development = row.cells[4].getElementsByTagName("input")[2].checked;
+        data4.evaluation = row.cells[4].getElementsByTagName("input")[3].checked;
+        data4.other = row.cells[4].getElementsByTagName("input")[4].checked;
+
+        data5.title = 'メモ';
+        data5.memo = row.cells[5].getElementsByTagName("textarea")[0].value;
+
+        rowObj.push(data1)
+        rowObj.push(data2)
+        rowObj.push(data3)
+        rowObj.push(data4)
+        rowObj.push(data5)
+
+        mainObj.project.push(rowObj)
+    }
+
+    row = outputTable.children[0].children[outputTable.children[0].children.length - 1];
+
+    mainObj.qualification = row.cells[0].getElementsByTagName("textarea")[0].value;
+
+    masterData2 = JSON.stringify(mainObj)
+
+    const a = document.createElement('a');
+    a.href = 'data:text/plain,' + encodeURIComponent(masterData2);
+
+    id = getIDNumber();
+    a.download = id + '.json';
+
+    a.click();
+};
