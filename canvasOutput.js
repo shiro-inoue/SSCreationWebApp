@@ -158,15 +158,24 @@ function outputHeader() {
     context.fillStyle = 'rgb(255, 165, 0)'; // 塗りつぶしの色
     context.fillRect(LEFT_MARGIN, TOP_LINE_Y, DRAWING_AREA_WIDTH, 20); // 左:0上:60の位置に、幅:2160 高さ:20の四角形を描く
 
-    let image = new Image();
-    image.crossOrigin = 'anonymous';
-    image.onload = () => {
-        // console.log("Loaded Image = " + "img/sobal.jpg");
-        let x = SOBAL_LOGO_Y;
-        let y = TOP_MARGIN - 3;
-        context.drawImage(image, x, y);
+    // let image = new Image();
+    // image.crossOrigin = 'anonymous';
+    // image.onload = () => {
+    //     // console.log("Loaded Image = " + "img/sobal.jpg");
+    //     let x = SOBAL_LOGO_Y;
+    //     let y = TOP_MARGIN - 3;
+    //     context.drawImage(image, x, y);
+    // }
+    // image.src = "img/sobalLogo.jpg";
+    let dst = context.createImageData(767, 224);
+    console.log("data.length = " + sobalLogoData.length);
+    for (let i = 0; i < sobalLogoData.length; i = i + 4) {
+        dst.data[i + 0] = sobalLogoData[i + 0];
+        dst.data[i + 1] = sobalLogoData[i + 1];
+        dst.data[i + 2] = sobalLogoData[i + 2];
+        dst.data[i + 3] = sobalLogoData[i + 3];
     }
-    image.src = "img/sobalLogo.jpg";
+    context.putImageData(dst, SOBAL_LOGO_Y, TOP_MARGIN - 5);
 
     context.strokeStyle = 'rgb(0, 0, 0, 0))';
     context.fillStyle = 'rgb(255, 255, 255, 0)'; // 左:0上:100の位置に、幅:580高さ:800の四角の枠線を描く
