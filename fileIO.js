@@ -94,9 +94,7 @@ function getEmployeeName() {
 function MakeJson(filename) {
 
     let row;
-    var masterData = [];
-    // var masterDatainfo = [];
-    let masterData2 = '';
+    let masterJsonData = '';
 
     let mainObj = new Object();
 
@@ -111,7 +109,6 @@ function MakeJson(filename) {
     let cells = infoTable.rows[0].cells[1];
     let id = cells.getElementsByTagName("input")[0].value;
 
-
     //基本データ書き込み
     filename = String(id);
     cells = infoTable.rows[1].cells[1];
@@ -124,7 +121,6 @@ function MakeJson(filename) {
     mainObj.id = id;
     mainObj.name = lastName + firstName;
     mainObj.romaji = lastNameR + firstNameR;
-
 
     outputTable = document.getElementById("outputTable");
     for (let i = 1; i < outputTable.children[0].children.length - 1; i++) {
@@ -172,10 +168,10 @@ function MakeJson(filename) {
 
     mainObj.qualification = row.cells[0].getElementsByTagName("textarea")[0].value;
 
-    masterData2 = JSON.stringify(mainObj)
+    masterJsonData = JSON.stringify(mainObj)
 
     const a = document.createElement('a');
-    a.href = 'data:text/plain,' + encodeURIComponent(masterData2);
+    a.href = 'data:text/plain,' + encodeURIComponent(masterJsonData);
 
     id = getIDNumber();
     a.download = id + '.json';
