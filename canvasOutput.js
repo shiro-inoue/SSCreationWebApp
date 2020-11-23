@@ -46,6 +46,9 @@ function previewSS() {
 }
 
 function outputSS() {
+    if (!checkTableErrors()) {
+        return;
+    }
 
     outputPDFFile();
 
@@ -487,27 +490,22 @@ function formatingDate(date) {
 
 function checkTableErrors() {
     // PDF出力ボタン、SSプレビューをクリック時に以下のチェックを行う
-    // 　作業期間の未入力（0か月、-Xヶ月）
-    // 　管理、設計、開発、評価、他 → どれか一つが入ってないとエラー
-    let errorKind;
     let infoTable = document.getElementById("infoTable");
     let outputTable = document.getElementById("outputTable");
 
-    let cells = infoTable.rows[0].cells[1];
-
     // 社員番号：6桁
+    let cells = infoTable.rows[0].cells[1];
     let id = cells.getElementsByTagName("input")[0].value;
     // console.log("id = " + id);
     if (id.length != 6) {
         alert("社員番号：社員番号(6桁)を記入してください。");
         return false;
     }
-    if (id.value.match(/[^0-9]+/)) {
-        alert("id.value.match(/[^0-9]+/)");
+    if (id.match(/[^0-9]+/)) {
+        alert("社員番号：社員番号(6桁)を記入してください。");
         return false;
     }
 
-        
     // 氏名の未入力
     cells = infoTable.rows[1].cells[1];
     let lastName = cells.getElementsByTagName("input")[0].value;
@@ -515,12 +513,12 @@ function checkTableErrors() {
     // console.log("lastName = " + lastName);
     // console.log("firstName = " + firstName);
     if (lastName.length == 0 || firstName.length == 0) {
-        alert("氏名：お名前を漢字で記入して下さい。");
+        alert("氏名：お名前を記入して下さい。");
         return false;
     }
 
-     // ローマ字の未入力（小文字）
-     cells = infoTable.rows[2].cells[1];
+    // ローマ字の未入力（小文字）
+    cells = infoTable.rows[2].cells[1];
     let lastNameR = cells.getElementsByTagName("input")[0].value;
     let firstNameR = cells.getElementsByTagName("input")[1].value;
     // console.log("lastNameR = " + lastNameR);
@@ -529,10 +527,38 @@ function checkTableErrors() {
         alert("ローマ字：お名前を大文字半角のローマ字で記入して下さい。");
         return false;
     }
-    if (lastNameR.length == 0 || firstNameR.length == 0) {
+    if (!lastNameR.match(/^[A-Z]+$/) || !firstNameR.match(/^[A-Z]+$/)) {
         alert("ローマ字：お名前を大文字半角のローマ字で記入して下さい。");
         return false;
     }
-    
+
+    for (let i = 1; i < outputTable.children[0].children.length - 1; i++) {
+        row = outputTable.children[0].children[i];
+        let isHide = row.cells[0].getElementsByTagName("input")[2].checked;
+        if (isHide) {
+            continue;
+        }
+
+        // 作業期間の未入力（0か月、-Xヶ月）
+        let period = calcPeriod(row.cells[1].getElementsByTagName("input")[0].value, row.cells[1].getElementsByTagName("input")[1].value);
+        // console.log("start date = " + row.cells[1].getElementsByTagName("input")[0].value);
+        // console.log("end date = " + row.cells[1].getElementsByTagName("input")[1].value);
+        if (period == 0 || period < 0) {
+            alert("期間：その業務を行った期間を記入して下さい。");
+            return false;
+        }
+
+        // 管理、設計、開発、評価、他 → どれか一つが入ってないとエラー
+        let flag = false;
+        for (let i = 0; i < 5; i++) {
+            flag = row.cells[4].getElementsByTagName("input")[i].checked ? true : flag;
+            // console.log("flag = " + flag);
+        }
+        if (!flag) {
+            alert("業務：おこなった業務を選択して下さい。");
+            return false;
+        }
+    }
+
     return true;
 }
