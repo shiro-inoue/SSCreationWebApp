@@ -200,13 +200,12 @@ function outputHeader() {
     // 識別番号
     context.font = "48px ＭＳ 明朝";
     context.fillStyle = 'rgb(0, 0, 0)';
-}
-
-function outputTableHeader(offset) {
     let idNum;
     idNum = getIDNumber();
     context.fillText(idNum, ID_VALUE_X, ID_VALUE_Y);
+}
 
+function outputTableHeader(offset) {
     // 項番の大枠
     context.strokeRect(LEFT_MARGIN, offset, DRAWING_AREA_WIDTH, NUMBER_ROW_HEIGHT);
 
