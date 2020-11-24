@@ -102,7 +102,7 @@ function MakeJson(filename) {
     mainObj.name = "";
     mainObj.romaji = "";
     mainObj.project = [];
-    mainObj.qualification ="";
+    mainObj.qualification = "";
 
     let infoTable = document.getElementById("infoTable");
 
@@ -119,21 +119,21 @@ function MakeJson(filename) {
     let firstNameR = cells.getElementsByTagName("input")[1].value;
 
     mainObj.id = id;
-    mainObj.name = lastName + firstName;
-    mainObj.romaji = lastNameR + firstNameR;
+    mainObj.name = lastName + " "+ firstName;
+    mainObj.romaji = lastNameR + " " + firstNameR;
 
     outputTable = document.getElementById("outputTable");
     for (let i = 1; i < outputTable.children[0].children.length - 1; i++) {
         row = outputTable.children[0].children[i];
-        row.cells[1].getElementsByTagName("input")[0].value
+        row.cells[1].getElementsByTagName("input")[0].value;
 
         let rowObj = [];
 
-        var data1 = new Object();
-        var data2 = new Object();
-        var data3 = new Object();
-        var data4 = new Object();
-        var data5 = new Object();
+        let data1 = new Object();
+        let data2 = new Object();
+        let data3 = new Object();
+        let data4 = new Object();
+        let data5 = new Object();
 
         data1.title = '期間';
         data1.start = row.cells[1].getElementsByTagName("input")[0].value;
@@ -155,20 +155,20 @@ function MakeJson(filename) {
         data5.title = 'メモ';
         data5.memo = row.cells[5].getElementsByTagName("textarea")[0].value;
 
-        rowObj.push(data1)
-        rowObj.push(data2)
-        rowObj.push(data3)
-        rowObj.push(data4)
-        rowObj.push(data5)
+        rowObj.push(data1);
+        rowObj.push(data2);
+        rowObj.push(data3);
+        rowObj.push(data4);
+        rowObj.push(data5);
 
-        mainObj.project.push(rowObj)
+        mainObj.project.push(rowObj);
     }
 
     row = outputTable.children[0].children[outputTable.children[0].children.length - 1];
 
     mainObj.qualification = row.cells[0].getElementsByTagName("textarea")[0].value;
 
-    masterJsonData = JSON.stringify(mainObj)
+    masterJsonData = JSON.stringify(mainObj);
 
     const a = document.createElement('a');
     a.href = 'data:text/plain,' + encodeURIComponent(masterJsonData);
