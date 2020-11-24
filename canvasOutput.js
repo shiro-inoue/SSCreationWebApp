@@ -47,7 +47,8 @@ function previewSS() {
 
 function outputSS() {
     if (!checkTableErrors()) {
-        return;
+        canvasArr.length = 0;
+        return canvasArr;
     }
 
     outputPDFFile();
@@ -334,7 +335,7 @@ function outputContents(row, offset, index) {
     context.font = "48px ＭＳ 明朝";
     context.fillStyle = 'rgb(0, 0, 0)';
     for (let i = 0; i < 5; i++) {
-        context.fillText((row.cells[4].getElementsByTagName("input")[i].checked) ? "*" : "", BUSINESSTYPE_FIELD_X + BUSINESSTYPE_FIELD_WIDTH * i + 20, NUMBER_LINE_PIXEL + offset);
+        context.fillText((row.cells[i + 4].getElementsByTagName("input")[0].checked) ? "*" : "", BUSINESSTYPE_FIELD_X + BUSINESSTYPE_FIELD_WIDTH * i + 20, NUMBER_LINE_PIXEL + offset);
     }
 
     return;
@@ -512,7 +513,7 @@ function checkTableErrors() {
     // console.log("lastName = " + lastName);
     // console.log("firstName = " + firstName);
     if (lastName.length == 0 || firstName.length == 0) {
-        alert("氏名：お名前を記入して下さい。");
+        alert("氏名：お名前を漢字で記入して下さい。");
         return false;
     }
 
@@ -550,7 +551,7 @@ function checkTableErrors() {
         // 管理、設計、開発、評価、他 → どれか一つが入ってないとエラー
         let flag = false;
         for (let i = 0; i < 5; i++) {
-            flag = row.cells[4].getElementsByTagName("input")[i].checked ? true : flag;
+            flag = row.cells[i + 4].getElementsByTagName("input")[0].checked ? true : flag;
             // console.log("flag = " + flag);
         }
         if (!flag) {

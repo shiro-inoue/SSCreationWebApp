@@ -187,13 +187,21 @@ function insertRow(obj) {
     let cell4 = row.insertCell(-1);
     let cell5 = row.insertCell(-1);
     let cell6 = row.insertCell(-1);
+    let cell7 = row.insertCell(-1);
+    let cell8 = row.insertCell(-1);
+    let cell9 = row.insertCell(-1);
+    let cell10 = row.insertCell(-1);
     // セルの内容入力
     cell1.innerHTML = index + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)"><br><input type="checkbox" id="hideRow" onchange="hideRow(this)">行を非表示';
     cell2.innerHTML = '<input name="startMonth" type="month" min="1970-04" onBlur="setDate(this, 0)">' + '<br>～' + '<input name="endMonth" type="month" min="1970-04" onBlur="setDate(this, 1)">' + '<br>(0ヶ月)';
     cell3.innerHTML = '<textarea rows="10" cols="50" style="width: 98%; height: 100%; resize: none" onchange="verifyText(this, ' + ONEPROJECT_MAX_CHARNUM + ')"></textarea>';
     cell4.innerHTML = '<textarea rows="10" cols="17" style="width: 96%; height: 100%; resize: none"  onchange="verifyText(this, ' + KEYWORD_MAX_CHARNUM + ')"></textarea>';
-    cell5.innerHTML = '<input type="checkbox" id="check1">管理<input type="checkbox" id="check2">設計<input type="checkbox" id="check3">開発<input type="checkbox" id="check4">評価<input type="checkbox" id="check5">他';
-    cell6.innerHTML = '<textarea rows="10" cols="26" style="width: 98%; height: 100%; resize: none"></textarea>';
+    cell5.innerHTML = '<input type="checkbox" id="check1">';
+    cell6.innerHTML = '<input type="checkbox" id="check2">';
+    cell7.innerHTML = '<input type="checkbox" id="check3">';
+    cell8.innerHTML = '<input type="checkbox" id="check4">';
+    cell9.innerHTML = '<input type="checkbox" id="check5">';
+    cell10.innerHTML = '<textarea rows="10" cols="26" style="width: 98%; height: 100%; resize: none"></textarea>';
 
     renumTable();
 }

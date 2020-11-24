@@ -21,6 +21,9 @@ function writeJSON() {
 
 function outputPDF() {
     canvasArr = outputSS();
+    if (canvasArr.length == 0) {
+        return;
+    }
     console.log("canvasArr.length = " + canvasArr.length);
     let pdf = jspdf.jsPDF('p', 'pt', 'a4');
 
@@ -119,7 +122,7 @@ function MakeJson(filename) {
     let firstNameR = cells.getElementsByTagName("input")[1].value;
 
     mainObj.id = id;
-    mainObj.name = lastName + " "+ firstName;
+    mainObj.name = lastName + " " + firstName;
     mainObj.romaji = lastNameR + " " + firstNameR;
 
     outputTable = document.getElementById("outputTable");
