@@ -1,0 +1,146 @@
+div#help_employee_number{
+	padding: 0.5em;
+    width: auto;
+    color: rgb(255, 255, 255);
+    line-height: 1.2em;
+    display: none;
+    position: absolute;
+    z-index: 5;
+    opacity: 0.85;
+    background-color: rgb(0, 0, 0);
+}
+
+div#help_employee_name{
+	padding: 0.5em;
+    width: auto;
+    color: rgb(255, 255, 255);
+    line-height: 1.2em;
+    display: none;
+    position: absolute;
+    z-index: 5;
+    opacity: 0.85;
+    background-color: rgb(0, 0, 0);
+}
+
+div#help_roman_alphabet{
+	padding: 0.5em;
+    width: auto;
+    color: rgb(255, 255, 255);
+    line-height: 1.2em;
+    display: none;
+    position: absolute;
+    z-index: 5;
+    opacity: 0.85;
+    background-color: rgb(0, 0, 0);
+}
+
+div#help_period{
+	padding: 0.5em;
+    width: auto;
+    color: rgb(255, 255, 255);
+    line-height: 1.2em;
+    display: none;
+    position: absolute;
+    z-index: 5;
+    opacity: 0.85;
+    background-color: rgb(0, 0, 0);
+}
+
+div#help_career{
+	padding: 0.5em;
+    width: auto;
+    color: rgb(255, 255, 255);
+    line-height: 1.2em;
+    display: none;
+    position: absolute;
+    z-index: 5;
+    opacity: 0.85;
+    background-color: rgb(0, 0, 0);
+}
+
+div#help_technology_keyword{
+	padding: 0.5em;
+    width: auto;
+    color: rgb(255, 255, 255);
+    line-height: 1.2em;
+    display: none;
+    position: absolute;
+    z-index: 5;
+    opacity: 0.85;
+    background-color: rgb(0, 0, 0);
+}
+div#help_management{
+	padding: 0.5em;
+    width: auto;
+    color: rgb(255, 255, 255);
+    line-height: 1.2em;
+    display: none;
+    position: absolute;
+    z-index: 5;
+    opacity: 0.85;
+    background-color: rgb(0, 0, 0);
+}
+
+div#help_design{
+	padding: 0.5em;
+    width: auto;
+    color: rgb(255, 255, 255);
+    line-height: 1.2em;
+    display: none;
+    position: absolute;
+    z-index: 5;
+    opacity: 0.85;
+    background-color: rgb(0, 0, 0);
+}
+
+div#help_development{
+	padding: 0.5em;
+    width: auto;
+    color: rgb(255, 255, 255);
+    line-height: 1.2em;
+    display: none;
+    position: absolute;
+    z-index: 5;
+    opacity: 0.85;
+    background-color: rgb(0, 0, 0);
+}
+
+div#help_evaluation{
+	padding: 0.5em;
+    width: auto;
+    color: rgb(255, 255, 255);
+    line-height: 1.2em;
+    display: none;
+    position: absolute;
+    z-index: 5;
+    opacity: 0.85;
+    background-color: rgb(0, 0, 0);
+}
+
+div#help_other{
+	padding: 0.5em;
+    width: auto;
+    color: rgb(255, 255, 255);
+    line-height: 1.2em;
+    display: none;
+    position: absolute;
+    z-index: 5;
+    opacity: 0.85;
+    background-color: rgb(0, 0, 0);
+}
+
+div#help_memo{
+	padding: 0.5em;
+    width: auto;
+    color: rgb(255, 255, 255);
+    line-height: 1.2em;
+    display: none;
+    position: absolute;
+    z-index: 5;
+    opacity: 0.85;
+    background-color: rgb(0, 0, 0);
+}
+
+div.hidden {
+	display: none;
+}
