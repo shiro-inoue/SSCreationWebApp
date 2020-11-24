@@ -31,7 +31,9 @@ function initTable() {
 
     row = outputTable.insertRow(-1);
     cell1 = row.insertCell(-1);
-    cell1.innerHTML = '<span style="font-weight : bold">資格</span><br><textarea rows="10" cols="92" style="width:99%; height:100%; resize: none" onchange="verifyText(this, ' + QUALIFICATION_MAX_CHARNUM + ')"></textarea>';
+    cell1.innerHTML = '<span style="font-weight : bold">資格</span>';
+    cell1.innerHTML += '<img src="./img/help.gif" onmouseover="showHelpPopUp(\'help_qualification_msg\', \'help_qualification\', event)" onmouseout="hideHelpPopUp(\'help_qualification\')"><div id="help_qualification"></div><div id="help_qualification_msg" class="hidden">情報処理やパソコン関係の資格、または無線や電気工事関係の資格をお持ちの方は記載して下さい。<br>また、語学についてもなんらかの資格をお持ちの方は記載して下さい。<br>（TOEICの場合は点数も明記すること）</div><br>';
+    cell1.innerHTML += '<textarea rows="10" cols="92" style="width:99%; height:100%; resize: none" onchange="verifyText(this, ' + QUALIFICATION_MAX_CHARNUM + ')"></textarea>';
     cell1.colSpan = 10; // セル結合のつもりだけど、うまく効かない
 }
 
@@ -119,7 +121,9 @@ function createTable(jsonParse) {
     // console.log("jsonParse.qualification = " + jsonParse.qualification);
     row = outputTable.insertRow(-1);
     cell1 = row.insertCell(-1);
-    cell1.innerHTML = '<span style="font-weight : bold">資格</span><br><textarea rows="10" cols="92" style="width:99%; height:100%; resize: none" onchange="verifyText(this, ' + QUALIFICATION_MAX_CHARNUM + ')">' + jsonParse.qualification + '</textarea>';
+    cell1.innerHTML = '<span style="font-weight : bold">資格</span>';
+    cell1.innerHTML += '<img src="./img/help.gif" onmouseover="showHelpPopUp(\'help_qualification_msg\', \'help_qualification\', event)" onmouseout="hideHelpPopUp(\'help_qualification\')"><div id="help_qualification"></div><div id="help_qualification_msg" class="hidden">情報処理やパソコン関係の資格、または無線や電気工事関係の資格をお持ちの方は記載して下さい。<br>また、語学についてもなんらかの資格をお持ちの方は記載して下さい。<br>（TOEICの場合は点数も明記すること）</div><br>';
+    cell1.innerHTML += '<textarea rows="10" cols="92" style="width:99%; height:100%; resize: none" onchange="verifyText(this, ' + QUALIFICATION_MAX_CHARNUM + ')">' + jsonParse.qualification + '</textarea>';
     cell1.colSpan = 10; // セル結合のつもりだけど、うまく効かない
 }
 
