@@ -15,7 +15,7 @@ function initTable() {
     let cell6 = row.insertCell(-1);
     // セルの内容入力
     cell1.innerHTML = index + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)"><br><input type="checkbox" id="hideRow" onchange="hideRow(this)">行を非表示';
-    cell2.innerHTML = '<input name="startMonth" type="month" onchange="setDate(this, 0)">' + '<br>～' + '<input name="endMonth" type="month" onchange="setDate(this, 1)">' + '<br>(0ヶ月)';
+    cell2.innerHTML = '<input name="startMonth" type="month" min="1970-04" onBlur="setDate(this, 0)">' + '<br>～' + '<input name="endMonth" type="month" min="1970-04" onBlur="setDate(this, 1)">' + '<br>(0ヶ月)';
     cell3.innerHTML = '<textarea rows="10" cols="50" style="width: 98%; height: 100%; resize: none" onchange="verifyText(this, ' + ONEPROJECT_MAX_CHARNUM + ')"></textarea>';
     cell4.innerHTML = '<textarea rows="10" cols="17" style="width: 95%; height: 100%; resize: none" onchange="verifyText(this, ' + KEYWORD_MAX_CHARNUM + ')"></textarea>';
     cell5.innerHTML = '<input type="checkbox" id="check1">管理<input type="checkbox" id="check2">設計<input type="checkbox" id="check3">開発<input type="checkbox" id="check4">評価<input type="checkbox" id="check5">他';
@@ -23,7 +23,7 @@ function initTable() {
 
     row = outputTable.insertRow(-1);
     cell1 = row.insertCell(-1);
-    cell1.innerHTML = '<label>資格</label><br><textarea rows="10" cols="92" style="width:99%; height:100%; resize: none" onchange="verifyText(this, ' + QUALIFICATION_MAX_CHARNUM + ')"></textarea>';
+    cell1.innerHTML = '<span style="font-weight : bold">資格</span><br><textarea rows="10" cols="92" style="width:99%; height:100%; resize: none" onchange="verifyText(this, ' + QUALIFICATION_MAX_CHARNUM + ')"></textarea>';
     cell1.colSpan = 6; // セル結合のつもりだけど、うまく効かない
 }
 
@@ -63,7 +63,7 @@ function createTable(jsonParse) {
                     let period = calcPeriod(prj.start, prj.end);
                     // console.log("period = " + period);
                     cell2 = row.insertCell(-1);
-                    cell2.innerHTML = '<input name="startMonth" type="month" onchange="setDate(this, 0)" value=' + prj.start + '>' + '<br>～' + '<input name="endMonth" type="month" onchange="setDate(this, 1)" value=' + prj.end + '>' + '<br>(' + period + 'ヶ月)';
+                    cell2.innerHTML = '<input name="startMonth" type="month" min="1970-04" onBlur="setDate(this, 0)" value=' + prj.start + '>' + '<br>～' + '<input name="endMonth" type="month" min="1970-04" onBlur="setDate(this, 1)" value=' + prj.end + '>' + '<br>(' + period + 'ヶ月)';
                     break;
                 case "経歴":
                     cell3 = row.insertCell(-1);
@@ -103,11 +103,15 @@ function createTable(jsonParse) {
     // console.log("jsonParse.qualification = " + jsonParse.qualification);
     row = outputTable.insertRow(-1);
     cell1 = row.insertCell(-1);
-    cell1.innerHTML = '<label>資格</label><br><textarea rows="10" cols="92" style="width:99%; height:100%; resize: none" onchange="verifyText(this, ' + QUALIFICATION_MAX_CHARNUM + ')">' + jsonParse.qualification + '</textarea>';
+    cell1.innerHTML = '<span style="font-weight : bold">資格</span><br><textarea rows="10" cols="92" style="width:99%; height:100%; resize: none" onchange="verifyText(this, ' + QUALIFICATION_MAX_CHARNUM + ')">' + jsonParse.qualification + '</textarea>';
     cell1.colSpan = 6; // セル結合のつもりだけど、うまく効かない
 }
 
 function calcPeriod(start, end) {
+
+    if (start == "" || end == "") {
+        return 0;
+    }
     let startYear = start.substr(0, 4);
     let startMonth = start.substr(5, 2);
     let endYear = end.substr(0, 4);
@@ -141,7 +145,7 @@ function setDate(obj, index) {
     if (start != "" && end != "") {
         let period = calcPeriod(start, end);
         // console.log("period = " + period);
-        row.cells[1].innerHTML = '<input name="startMonth" type="month" onchange="setDate(this, 0)" value=' + start + '>' + '<br>～' + '<input name="endMonth" type="month" onchange="setDate(this, 1)" value=' + end + '>' + '<br>(' + period + 'ヶ月)';
+        row.cells[1].innerHTML = '<input name="startMonth" type="month" min="1970-04" onBlur="setDate(this, 0)" value=' + start + '>' + '<br>～' + '<input name="endMonth" type="month" min="1970-04" onBlur="setDate(this, 1)" value=' + end + '>' + '<br>(' + period + 'ヶ月)';
         // console.log(row.cells[1].innerHTML);
     }
 }
@@ -165,7 +169,7 @@ function insertRow(obj) {
     let cell6 = row.insertCell(-1);
     // セルの内容入力
     cell1.innerHTML = index + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)"><br><input type="checkbox" id="hideRow" onchange="hideRow(this)">行を非表示';
-    cell2.innerHTML = '<input name="startMonth" type="month" onchange="setDate(this, 0)">' + '<br>～' + '<input name="endMonth" type="month" onchange="setDate(this, 1)">' + '<br>(0ヶ月)';
+    cell2.innerHTML = '<input name="startMonth" type="month" min="1970-04" onBlur="setDate(this, 0)">' + '<br>～' + '<input name="endMonth" type="month" min="1970-04" onBlur="setDate(this, 1)">' + '<br>(0ヶ月)';
     cell3.innerHTML = '<textarea rows="10" cols="50" style="width: 98%; height: 100%; resize: none" onchange="verifyText(this, ' + ONEPROJECT_MAX_CHARNUM + ')"></textarea>';
     cell4.innerHTML = '<textarea rows="10" cols="17" style="width: 96%; height: 100%; resize: none"  onchange="verifyText(this, ' + KEYWORD_MAX_CHARNUM + ')"></textarea>';
     cell5.innerHTML = '<input type="checkbox" id="check1">管理<input type="checkbox" id="check2">設計<input type="checkbox" id="check3">開発<input type="checkbox" id="check4">評価<input type="checkbox" id="check5">他';
