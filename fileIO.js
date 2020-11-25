@@ -150,13 +150,13 @@ function MakeJson(filename) {
 
         data4.title = '業務種別';
         data4.management = row.cells[4].getElementsByTagName("input")[0].checked;
-        data4.design = row.cells[4].getElementsByTagName("input")[1].checked;
-        data4.development = row.cells[4].getElementsByTagName("input")[2].checked;
-        data4.evaluation = row.cells[4].getElementsByTagName("input")[3].checked;
-        data4.other = row.cells[4].getElementsByTagName("input")[4].checked;
+        data4.design = row.cells[5].getElementsByTagName("input")[0].checked;
+        data4.development = row.cells[6].getElementsByTagName("input")[0].checked;
+        data4.evaluation = row.cells[7].getElementsByTagName("input")[0].checked;
+        data4.other = row.cells[8].getElementsByTagName("input")[0].checked;
 
         data5.title = 'メモ';
-        data5.memo = row.cells[5].getElementsByTagName("textarea")[0].value;
+        data5.memo = row.cells[9].getElementsByTagName("textarea")[0].value;
 
         rowObj.push(data1);
         rowObj.push(data2);
