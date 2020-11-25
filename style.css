@@ -33,16 +33,23 @@
 .StyleInfoTable
 {
     background-color:  #ffc;
+    /* font-size: 1rem; */
 }
 
 .StyleOutputTable
 {
     background-color: #ffc;
+    /* font-size: 1rem; */
 }
 
 .StyleTitle
 {
-    background-color: #ffc;
+    border-bottom: solid 1px red;
+}
+
+.menufont
+{
+    font-size:12px;
 }
 
 
