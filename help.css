@@ -8,6 +8,7 @@ div#help_employee_number{
     z-index: 5;
     opacity: 0.85;
     background-color: rgb(0, 0, 0);
+    text-align: left;
 }
 
 div#help_employee_name{
@@ -20,6 +21,7 @@ div#help_employee_name{
     z-index: 5;
     opacity: 0.85;
     background-color: rgb(0, 0, 0);
+    text-align: left;
 }
 
 div#help_roman_alphabet{
@@ -32,6 +34,7 @@ div#help_roman_alphabet{
     z-index: 5;
     opacity: 0.85;
     background-color: rgb(0, 0, 0);
+    text-align: left;
 }
 
 div#help_period{
@@ -44,6 +47,7 @@ div#help_period{
     z-index: 5;
     opacity: 0.85;
     background-color: rgb(0, 0, 0);
+    text-align: left;
 }
 
 div#help_career{
@@ -56,6 +60,7 @@ div#help_career{
     z-index: 5;
     opacity: 0.85;
     background-color: rgb(0, 0, 0);
+    text-align: left;
 }
 
 div#help_technology_keyword{
@@ -68,6 +73,7 @@ div#help_technology_keyword{
     z-index: 5;
     opacity: 0.85;
     background-color: rgb(0, 0, 0);
+    text-align: left;
 }
 div#help_management{
 	padding: 0.5em;
@@ -79,6 +85,7 @@ div#help_management{
     z-index: 5;
     opacity: 0.85;
     background-color: rgb(0, 0, 0);
+    text-align: left;
 }
 
 div#help_design{
@@ -91,6 +98,7 @@ div#help_design{
     z-index: 5;
     opacity: 0.85;
     background-color: rgb(0, 0, 0);
+    text-align: left;
 }
 
 div#help_development{
@@ -103,6 +111,7 @@ div#help_development{
     z-index: 5;
     opacity: 0.85;
     background-color: rgb(0, 0, 0);
+    text-align: left;
 }
 
 div#help_evaluation{
@@ -115,6 +124,7 @@ div#help_evaluation{
     z-index: 5;
     opacity: 0.85;
     background-color: rgb(0, 0, 0);
+    text-align: left;
 }
 
 div#help_other{
@@ -127,6 +137,7 @@ div#help_other{
     z-index: 5;
     opacity: 0.85;
     background-color: rgb(0, 0, 0);
+    text-align: left;
 }
 
 div#help_memo{
@@ -139,6 +150,7 @@ div#help_memo{
     z-index: 5;
     opacity: 0.85;
     background-color: rgb(0, 0, 0);
+    text-align: left;
 }
 
 div#help_qualification{
@@ -151,8 +163,10 @@ div#help_qualification{
     z-index: 5;
     opacity: 0.85;
     background-color: rgb(0, 0, 0);
+    text-align: left;
 }
 
 div.hidden {
-	display: none;
+    display: none;
+    text-align: left;
 }
