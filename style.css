@@ -42,7 +42,12 @@
 
 .StyleTitle
 {
-    background-color: #ffc;
+    border-bottom: solid 1px red;
+}
+
+.menufont
+{
+    font-size:12px;
 }
 
 

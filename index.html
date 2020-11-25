@@ -16,11 +16,11 @@
 </head>
 
 <body>
-    <h1 class="StyleTitle">スキルシート作成Webアプリ</h1>
-    <hr style="width:270" class="StyleTitle">
+    <h1 class="StyleTitle"> スキルシート作成Webアプリ</h1>
     <table id="infoTable" border="1" style="border-collapse: collapse">
         <tr>
-            <th width="100" class="StyleInfoTable">社員番号
+            <th width="100" class="StyleInfoTable">
+                <span class = "menufont" >社員番号<span>
                 <img src="./img/help.gif" onmouseover="showHelpPopUp('help_employee_number_msg', 'help_employee_number', event)" onmouseout="hideHelpPopUp('help_employee_number')">
                 <div id="help_employee_number"></div>
                 <div id="help_employee_number_msg" class="hidden">社員番号(6桁)を記入してください。</div>
@@ -30,7 +30,8 @@
             </td>
         </tr>
         <tr>
-            <th class="StyleInfoTable">氏名
+            <th class="StyleInfoTable">
+                <span class = "menufont" >氏名<span></span>
                 <img src="./img/help.gif" onmouseover="showHelpPopUp('help_employee_name_msg', 'help_employee_name', event)" onmouseout="hideHelpPopUp('help_employee_name')">
                 <div id="help_employee_name"></div>
                 <div id="help_employee_name_msg" class="hidden">お名前を漢字で記入して下さい。</div>
@@ -41,7 +42,8 @@
             </td>
         </tr>
         <tr>
-            <th class="StyleInfoTable">ローマ字
+            <th class="StyleInfoTable">
+                <span class = "menufont" >ローマ字<span></span>              
                 <img src="./img/help.gif" onmouseover="showHelpPopUp('help_roman_alphabet_msg', 'help_roman_alphabet', event)" onmouseout="hideHelpPopUp('help_roman_alphabet')">
                 <div id="help_roman_alphabet"></div>
                 <div id="help_roman_alphabet_msg" class="hidden">お名前を大文字半角のローマ字で記入して下さい。</div>
@@ -94,14 +96,15 @@
             <th width="330" class="StyleOutputTable">経歴
                 <img src="./img/help.gif" onmouseover="showHelpPopUp('help_career_msg', 'help_career', event)" onmouseout="hideHelpPopUp('help_career')">
                 <div id="help_career"></div>
-                <div id="help_career_msg" class="hidden">1行の最大は半角50文字。<br>
-　　　　　　　　　　1つのプロジェクトの最大は57行<br>
+                <div id="help_career_msg" class="hidden">
+                    1行の最大は半角50文字。<br>
+                    1つのプロジェクトの最大は57行<br>
                     業務経歴はその内容を示す大項目と補足説明を記載する小項目に分けて記入して下さい。<br>
                     大項目では「◎◎の○○を●●」といったように簡潔にわかりやすい内容を記入して下さい。<br>
                     小項目ではその業務、プロジェクトで担当した作業内容を列挙して下さい。<br>
                     「設計～開発」とまとめて書かず、各作業内容を略さず個別に明記して下さい。</div>
             </th>
-            <th width="120" class="StyleOutputTable">技術キーワード
+            <th width="150" class="StyleOutputTable">技術キーワード
                 <img src="./img/help.gif" onmouseover="showHelpPopUp('help_technology_keyword_msg', 'help_technology_keyword', event)" onmouseout="hideHelpPopUp('help_technology_keyword')">
                 <div id="help_technology_keyword"></div>
                 <div id="help_technology_keyword_msg" class="hidden">1行の最大は半角17文字<br>
