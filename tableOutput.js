@@ -44,8 +44,10 @@ function createTable(jsonParse) {
         return;
     }
 
+    let infoTable = document.getElementById("infoTable");
     let outputTable = document.getElementById("outputTable");
     let row;
+    let cells;
     let html = "";
 
     let tableHeaderRowCount = 1;
@@ -57,6 +59,17 @@ function createTable(jsonParse) {
     // console.log("id = " + jsonParse.id);
     // console.log("name = " + jsonParse.name);
     // console.log("romaji = " + jsonParse.romaji);
+    cells = infoTable.rows[0].cells[1];
+    cells.getElementsByTagName("input")[0].value = jsonParse.id;
+    cells = infoTable.rows[1].cells[1];
+    let array_name = jsonParse.name.split(" ");
+    cells.getElementsByTagName("input")[0].value = array_name[0];
+    cells.getElementsByTagName("input")[1].value = array_name[1];
+    cells = infoTable.rows[2].cells[1];
+    array_name = jsonParse.romaji.split(" ");
+    cells.getElementsByTagName("input")[0].value = array_name[0];
+    cells.getElementsByTagName("input")[1].value = array_name[1];
+
     // console.log("project.length = " + jsonParse.project.length);
     // console.log("jsonParse.project[0].length = " + jsonParse.project[0].length);
 
