@@ -555,7 +555,7 @@ function checkTableErrors() {
             // console.log("flag = " + flag);
         }
         if (!flag) {
-            alert("業務：おこなった業務を選択して下さい。");
+            alert("管理/設計/開発/評価/他：おこなった業務を選択して下さい。");
             return false;
         }
     }
