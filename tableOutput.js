@@ -20,26 +20,24 @@ function initTable() {
     // セルの内容入力
     cell1.innerHTML = index + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)"><br><input type="checkbox" id="hideRow" onchange="hideRow(this)">行を非表示';
     cell2.innerHTML = '<input name="startMonth" type="month" min="1970-04" onBlur="setDate(this, 0)">' + '<br>～' + '<input name="endMonth" type="month" min="1970-04" onBlur="setDate(this, 1)">' + '<br>(0ヶ月)';
-    cell3.innerHTML = '<textarea rows="10" class = "outPutText" cols="50" style="width: 98%; height: 100%; resize: none" onchange="verifyText(this, ' + ONEPROJECT_MAX_CHARNUM + ')"></textarea>';
-    cell3.innerHTML = '<textarea rows="10" class = "outPutText" cols="50" style="width: 98%; height: 100%; resize: none" onchange="verifyText(this, ' + ONEPROJECT_MAX_CHARNUM + ')"></textarea>';
-
-
-    cell4.innerHTML = '<textarea rows="10"class = "outPutText"  cols="17" style="width: 95%; height: 100%; resize: none" onchange="verifyText(this, ' + KEYWORD_MAX_CHARNUM + ')"></textarea>';
+    cell3.innerHTML = '<textarea rows="10" class = "outPutText" cols="50" style="width: 100%; height: 100%; resize: none" onchange="verifyText(this, ' + ONEPROJECT_MAX_CHARNUM + ')"></textarea>';
+    cell4.innerHTML = '<textarea rows="10"class = "outPutText"  cols="17" style="width: 99%; height: 100%; resize: none" onchange="verifyText(this, ' + KEYWORD_MAX_CHARNUM + ')"></textarea>';
     cell5.innerHTML = '<input type="checkbox" id="check1">';
     cell6.innerHTML = '<input type="checkbox" id="check2">';
     cell7.innerHTML = '<input type="checkbox" id="check3">';
     cell8.innerHTML = '<input type="checkbox" id="check4">';
     cell9.innerHTML = '<input type="checkbox" id="check5">';
-    cell10.innerHTML = '<textarea class = "outPutText" rows="10" cols="25" style="width: 97%; height: 100%; resize: none"></textarea>';
+    cell10.innerHTML = '<textarea class = "outPutText" rows="10" cols="25" style="width: 99%; height: 100%; resize: none"></textarea>';
     row = outputTable.insertRow(-1);
     cell1 = row.insertCell(-1);
     cell1.innerHTML = '<span style="font-weight : bold">資格</span>';
-    cell1.innerHTML += '<img src="./img/help.gif" onmouseover="showHelpPopUp(\'help_qualification_msg\', \'help_qualification\', event)" onmouseout="hideHelpPopUp(\'help_qualification\')"><div id="help_qualification"></div><div id="help_qualification_msg" class="hidden">情報処理やパソコン関係の資格、または無線や電気工事関係の資格をお持ちの方は記載して下さい。<br>また、語学についてもなんらかの資格をお持ちの方は記載して下さい。<br>（TOEICの場合は点数も明記すること）</div><br>';
-    cell1.colSpan = 10; // セル結合のつもりだけど、うまく効かない
+    cell1.innerHTML += '<img src="./img/help.gif" class="StyleOutputTable" onmouseover="showHelpPopUp(\'help_qualification_msg\', \'help_qualification\', event)" onmouseout="hideHelpPopUp(\'help_qualification\')"><div id="help_qualification"></div><div id="help_qualification_msg" class="hidden">資格：情報処理やパソコン関係の資格、または無線や電気工事関係の資格をお持ちの方は記載して下さい。<br>また、語学についてもなんらかの資格をお持ちの方は記載して下さい。<br>（TOEICの場合は点数も明記すること）<br><br>※1行の最大は半角92文字、最大行数は56行の制限があります。<br>　1行半角51文字(全角26文字)以降、カーソルが移動したときに削除されます。</div><br>';
+    cell1.colSpan = 10;
+
     row = outputTable.insertRow(-1);
     cell1 = row.insertCell(-1);
-    cell1.innerHTML = '<textarea class = "outPutText" rows="10" cols="92" style="width:99%; height:100%; resize: none" onchange="verifyText(this, ' + QUALIFICATION_MAX_CHARNUM + ')"></textarea>';
-    cell1.colSpan = 10; // セル結合のつもりだけど、うまく効かない
+    cell1.innerHTML = '<textarea class = "outPutText" rows="10" cols="92" style="width: 100%; height: 100%; resize: none" onchange="verifyText(this, ' + QUALIFICATION_MAX_CHARNUM + ')"></textarea>';
+    cell1.colSpan = 10;
 }
 
 function createTable(jsonParse) {
@@ -96,12 +94,12 @@ function createTable(jsonParse) {
                 case "経歴":
                     cell3 = row.insertCell(-1);
                     // console.log("prj.career = " + prj.career);
-                    cell3.innerHTML = '<textarea class = "outPutText" rows="10" cols="50" style="width: 98%; height: 100%; resize: none" onchange="verifyText(this, ' + ONEPROJECT_MAX_CHARNUM + ')">' + prj.career + '</textarea>';
+                    cell3.innerHTML = '<textarea class = "outPutText" rows="10" cols="50" style="width: 100%; height: 100%; resize: none" onchange="verifyText(this, ' + ONEPROJECT_MAX_CHARNUM + ')">' + prj.career + '</textarea>';
                     break;
                 case "技術キーワード":
                     cell4 = row.insertCell(-1);
                     // console.log("prj.keyword = " + prj.keyword);
-                    cell4.innerHTML = '<textarea class = "outPutText" rows="10" cols="17" style="width: 96%; height: 100%; resize: none"  onchange="verifyText(this, ' + KEYWORD_MAX_CHARNUM + ')">' + prj.keyword + '</textarea>';
+                    cell4.innerHTML = '<textarea class = "outPutText" rows="10" cols="17" style="width: 99%; height: 100%; resize: none"  onchange="verifyText(this, ' + KEYWORD_MAX_CHARNUM + ')">' + prj.keyword + '</textarea>';
                     break;
                 case "業務種別":
                     // console.log("prj.management  = " + prj.management);
@@ -128,7 +126,7 @@ function createTable(jsonParse) {
                 case "メモ":
                     cell10 = row.insertCell(-1);
                     // console.log("prj.memo = " + prj.memo);
-                    cell10.innerHTML = '<textarea class = "outPutText" rows="10" cols="26" style="width: 96%; height: 100%; resize: none">' + prj.memo + '</textarea>';
+                    cell10.innerHTML = '<textarea class = "outPutText" rows="10" cols="26" style="width: 99%; height: 100%; resize: none">' + prj.memo + '</textarea>';
                     break;
                 default:
 
@@ -140,12 +138,13 @@ function createTable(jsonParse) {
     row = outputTable.insertRow(-1);
     cell1 = row.insertCell(-1);
     cell1.innerHTML = '<span style="font-weight : bold">資格</span>';
-    cell1.innerHTML += '<img src="./img/help.gif" onmouseover="showHelpPopUp(\'help_qualification_msg\', \'help_qualification\', event)" onmouseout="hideHelpPopUp(\'help_qualification\')"><div id="help_qualification"></div><div id="help_qualification_msg" class="hidden">情報処理やパソコン関係の資格、または無線や電気工事関係の資格をお持ちの方は記載して下さい。<br>また、語学についてもなんらかの資格をお持ちの方は記載して下さい。<br>（TOEICの場合は点数も明記すること）</div><br>';
-    cell1.colSpan = 10; // セル結合のつもりだけど、うまく効かない
+    cell1.innerHTML += '<img src="./img/help.gif" onmouseover="showHelpPopUp(\'help_qualification_msg\', \'help_qualification\', event)" onmouseout="hideHelpPopUp(\'help_qualification\')"><div id="help_qualification"></div><div id="help_qualification_msg" class="hidden">資格：情報処理やパソコン関係の資格、または無線や電気工事関係の資格をお持ちの方は記載して下さい。<br>また、語学についてもなんらかの資格をお持ちの方は記載して下さい。<br>（TOEICの場合は点数も明記すること）<br><br>※1行の最大は半角92文字、最大行数は56行の制限があります。<br>　1行半角51文字(全角26文字)以降、カーソルが移動したときに削除されます。</div><br>';
+    cell1.colSpan = 10;
+
     row = outputTable.insertRow(-1);
     cell1 = row.insertCell(-1);
-    cell1.innerHTML = '<textarea class = "outPutText" rows="10" cols="92" style="width:99%; height:100%; resize: none" onchange="verifyText(this, ' + QUALIFICATION_MAX_CHARNUM + ')">' + jsonParse.qualification + '</textarea>';
-    cell1.colSpan = 10; // セル結合のつもりだけど、うまく効かない
+    cell1.innerHTML = '<textarea class = "outPutText" rows="10" cols="92" style="width: 100%; height: 100%; resize: none" onchange="verifyText(this, ' + QUALIFICATION_MAX_CHARNUM + ')">' + jsonParse.qualification + '</textarea>';
+    cell1.colSpan = 10;
 }
 
 function calcPeriod(start, end) {
@@ -215,14 +214,14 @@ function insertRow(obj) {
     // セルの内容入力
     cell1.innerHTML = index + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)"><br><input type="checkbox" id="hideRow" onchange="hideRow(this)">行を非表示';
     cell2.innerHTML = '<input name="startMonth" type="month" min="1970-04" onBlur="setDate(this, 0)">' + '<br>～' + '<input name="endMonth" type="month" min="1970-04" onBlur="setDate(this, 1)">' + '<br>(0ヶ月)';
-    cell3.innerHTML = '<textarea class = "outPutText" rows="10" cols="50" style="width: 98%; height: 100%; resize: none" onchange="verifyText(this, ' + ONEPROJECT_MAX_CHARNUM + ')"></textarea>';
-    cell4.innerHTML = '<textarea class = "outPutText" rows="10" cols="17" style="width: 96%; height: 100%; resize: none"  onchange="verifyText(this, ' + KEYWORD_MAX_CHARNUM + ')"></textarea>';
+    cell3.innerHTML = '<textarea class = "outPutText" rows="10" cols="50" style="width: 100%; height: 100%; resize: none" onchange="verifyText(this, ' + ONEPROJECT_MAX_CHARNUM + ')"></textarea>';
+    cell4.innerHTML = '<textarea class = "outPutText" rows="10" cols="17" style="width: 99%; height: 100%; resize: none"  onchange="verifyText(this, ' + KEYWORD_MAX_CHARNUM + ')"></textarea>';
     cell5.innerHTML = '<input type="checkbox" id="check1">';
     cell6.innerHTML = '<input type="checkbox" id="check2">';
     cell7.innerHTML = '<input type="checkbox" id="check3">';
     cell8.innerHTML = '<input type="checkbox" id="check4">';
     cell9.innerHTML = '<input type="checkbox" id="check5">';
-    cell10.innerHTML = '<textarea class = "outPutText" rows="10" cols="26" style="width: 98%; height: 100%; resize: none"></textarea>';
+    cell10.innerHTML = '<textarea class = "outPutText" rows="10" cols="26" style="width: 99%; height: 100%; resize: none"></textarea>';
 
     renumTable();
 }
