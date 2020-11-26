@@ -33,6 +33,7 @@
 .StyleInfoTable
 {
     background-color:  #ffc;
+    width: 100px;
 }
 
 .StyleOutputTable
@@ -64,3 +65,7 @@
     
     display:block;
 }
+
+input.infoidTxt { width: 251px }
+
+input.infoTxt { width: 119px; }
