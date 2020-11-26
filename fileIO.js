@@ -9,12 +9,19 @@ function readJSON() {
     reader.onloadend = () => {
         console.log(reader.result);
         block_id = JSON.parse(reader.result);
+        if (block_id.keyword != "SOBALSS") {
+            alert("正しい経歴ファイルではありません。");
+            return;
+        }
         createTable(block_id);
     }
 }
 
 function writeJSON() {
     // alert("writeJSON() ファイル出力を行います");
+    if (!checkTableErrors()) {
+        return;
+    }
 
     MakeJson();
 }
@@ -101,6 +108,7 @@ function MakeJson(filename) {
 
     let mainObj = new Object();
 
+    mainObj.keyword = "SOBALSS";
     mainObj.id = "";
     mainObj.name = "";
     mainObj.romaji = "";
