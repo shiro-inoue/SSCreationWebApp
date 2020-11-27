@@ -230,7 +230,7 @@ function deleteRow(obj) {
     let outputTable = document.getElementById("outputTable");
     let row;
 
-    if (outputTable.rows.length == 3) {
+    if (outputTable.rows.length == 4) {
         return;
     }
 
@@ -272,7 +272,7 @@ function renumTable() {
     // console.log("outputTable.rows.length = " + outputTable.rows.length);
     let num = 1;
 
-    for (let i = 1; i < outputTable.rows.length - 1; i++) {
+    for (let i = 1; i < outputTable.rows.length - 2; i++) {
         let cells = outputTable.rows[i].cells[0];
         // console.log("cells.firstChild.nodeValue = " + cells.firstChild.nodeValue);
 

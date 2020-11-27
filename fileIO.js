@@ -7,7 +7,7 @@ function readJSON() {
     let reader = new FileReader();
     reader.readAsText(fileSelect.files[0]);
     reader.onloadend = () => {
-        console.log(reader.result);
+        // console.log(reader.result);
         block_id = JSON.parse(reader.result);
         if (block_id.keyword != "SOBALSS") {
             alert("正しい経歴ファイルではありません。");
@@ -15,6 +15,11 @@ function readJSON() {
         }
         createTable(block_id);
     }
+}
+
+function onClick(e) {
+    // console.log("onClick");
+    e.value = "";
 }
 
 function writeJSON() {
@@ -134,7 +139,7 @@ function MakeJson(filename) {
     mainObj.romaji = lastNameR + " " + firstNameR;
 
     outputTable = document.getElementById("outputTable");
-    for (let i = 1; i < outputTable.children[0].children.length - 1; i++) {
+    for (let i = 1; i < outputTable.children[0].children.length - 2; i++) {
         row = outputTable.children[0].children[i];
         row.cells[1].getElementsByTagName("input")[0].value;
 
