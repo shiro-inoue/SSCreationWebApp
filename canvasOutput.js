@@ -66,7 +66,7 @@ function outputPDFFile() {
     outputTable = document.getElementById("outputTable");
     let row;
     let offset = CONTENT_ROW_Y;
-    for (let i = 1; i < outputTable.children[0].children.length - 1; i++) {
+    for (let i = 1; i < outputTable.children[0].children.length - 2; i++) {
         row = outputTable.children[0].children[i];
         // console.log("offset = " + offset);
         outputContents(row, offset, i);
@@ -74,7 +74,7 @@ function outputPDFFile() {
         offset = nextOffset;
         if (nextOffset == TOP_MARGIN) {
             createCanvas(A4_PAPER_WIDTH, A4_PAPER_HEIGHT);
-            if (i != outputTable.children[0].children.length - 2) {
+            if (i != outputTable.children[0].children.length - 3) {
                 outputTableHeader(TOP_MARGIN);
                 offset = nextOffset + NUMBER_ROW_HEIGHT;
             }
@@ -98,7 +98,7 @@ function outputPreview() {
     outputTable = document.getElementById("outputTable");
     let row;
     let offset = CONTENT_ROW_Y;
-    for (let i = 1; i < outputTable.children[0].children.length - 1; i++) {
+    for (let i = 1; i < outputTable.children[0].children.length - 2; i++) {
         row = outputTable.children[0].children[i];
         // console.log("offset = " + offset);
         outputContents(row, offset, 0);
@@ -376,7 +376,7 @@ function getRowHeight(row, offset, index) {
     let contentRowHeight = getContentRowHeight(row);
     let drawHeight;
 
-    if (index + 2 < outputTable.children[0].children.length) {
+    if (index + 2 < outputTable.children[0].children.length - 1) {
         let nextRow = outputTable.children[0].children[index + 1];
         let isHide = nextRow.cells[0].getElementsByTagName("input")[2].checked;
 
@@ -452,7 +452,7 @@ function getCanvasHeight() {
     let canvasHeight = TOP_MARGIN + HEADER_ROW_HEIGHT + ID_ROW_HEIGHT + NUMBER_ROW_HEIGHT + FOOTER_ROW_HEIGHT + BOTTOM_MARGIN;
 
 
-    for (let i = 1; i < outputTable.children[0].children.length - 1; i++) {
+    for (let i = 1; i < outputTable.children[0].children.length - 2; i++) {
         row = outputTable.children[0].children[i];
         let isHide = row.cells[0].getElementsByTagName("input")[2].checked;
 
@@ -532,7 +532,7 @@ function checkTableErrors() {
         return false;
     }
 
-    for (let i = 1; i < outputTable.children[0].children.length - 1; i++) {
+    for (let i = 1; i < outputTable.children[0].children.length - 2; i++) {
         row = outputTable.children[0].children[i];
         let isHide = row.cells[0].getElementsByTagName("input")[2].checked;
         if (isHide) {

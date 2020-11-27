@@ -164,6 +164,7 @@ div#help_qualification{
     opacity: 0.85;
     background-color: rgb(0, 0, 0);
     text-align: left;
+    font-weight: bold; /* ヘルプの文字を合わせるために追加 */
 }
 
 div.hidden {
