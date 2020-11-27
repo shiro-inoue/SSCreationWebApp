@@ -184,8 +184,8 @@ function outputHeader() {
     }
     context.putImageData(dst, SOBAL_LOGO_Y, TOP_MARGIN - 5);
 
-    context.strokeStyle = 'rgb(0, 0, 0, 0))';
-    context.fillStyle = 'rgb(255, 255, 255, 0)'; // 左:0上:100の位置に、幅:580高さ:800の四角の枠線を描く
+    context.strokeStyle = "black";
+    context.lineWidth = 3;
 
     // 識別番号欄
     context.strokeRect(LEFT_MARGIN, ID_ROW_Y, IDTITLE_FIELD_WIDTH, ID_ROW_HEIGHT);
@@ -207,6 +207,9 @@ function outputHeader() {
 }
 
 function outputTableHeader(offset) {
+    context.strokeStyle = "black";
+    context.lineWidth = 3;
+
     // 項番の大枠
     context.strokeRect(LEFT_MARGIN, offset, DRAWING_AREA_WIDTH, NUMBER_ROW_HEIGHT);
 
@@ -236,7 +239,7 @@ function outputTableHeader(offset) {
 
     // 種別の枠
     context.beginPath(); // 現在のパスをリセット
-    context.setLineDash([2, 2]); // 点線の描画方法を指定
+    context.setLineDash([5, 5]); // 点線の描画方法を指定
     for (let i = 0; i < 4; i++) {
         context.moveTo(BUSINESSTYPE_FIELD_X + BUSINESSTYPE_FIELD_WIDTH + BUSINESSTYPE_FIELD_WIDTH * i, offset); // 新しいサブパスの開始点を座標指定
         context.lineTo(BUSINESSTYPE_FIELD_X + BUSINESSTYPE_FIELD_WIDTH + BUSINESSTYPE_FIELD_WIDTH * i, offset + NUMBER_ROW_HEIGHT); // 直前の座標と指定座標を結ぶ直線を引く
@@ -270,6 +273,9 @@ function outputTableHeader(offset) {
 }
 
 function outputContents(row, offset, index) {
+    context.strokeStyle = "black";
+    context.lineWidth = 3;
+
     let messages;
     let isHide = row.cells[0].getElementsByTagName("input")[2].checked;
     if (isHide) {
@@ -324,7 +330,7 @@ function outputContents(row, offset, index) {
 
     // 種別の枠
     context.beginPath(); // 現在のパスをリセット
-    context.setLineDash([2, 2]); // 点線の描画方法を指定
+    context.setLineDash([5, 5]); // 点線の描画方法を指定
     for (let i = 0; i < 4; i++) {
         context.moveTo(BUSINESSTYPE_FIELD_X + BUSINESSTYPE_FIELD_WIDTH + BUSINESSTYPE_FIELD_WIDTH * i, offset); // 新しいサブパスの開始点を座標指定
         context.lineTo(BUSINESSTYPE_FIELD_X + BUSINESSTYPE_FIELD_WIDTH + BUSINESSTYPE_FIELD_WIDTH * i, contentRowHeight + offset); // 直前の座標と指定座標を結ぶ直線を引く
@@ -342,6 +348,9 @@ function outputContents(row, offset, index) {
 }
 
 function outputFooter(row, offset) {
+    context.strokeStyle = "black";
+    context.lineWidth = 3;
+
     let messages;
 
     let qualificationRowHeight = getQualificationRowHeight(row);
@@ -401,7 +410,8 @@ function getRowHeight(row, offset, index) {
     }
 
     if (A4_PAPER_HEIGHT < drawHeight) {
-        contentRowHeight = A4_PAPER_HEIGHT - offset - BOTTOM_MARGIN;
+        // 改ページの際、プロジェクト下部に空白行を挿入する処理
+        // contentRowHeight = A4_PAPER_HEIGHT - offset - BOTTOM_MARGIN;
         nextOffset = TOP_MARGIN;
     }
     else {
