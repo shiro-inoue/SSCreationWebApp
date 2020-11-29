@@ -4,6 +4,7 @@ let canvasArr = [];
 let canvasNum = 1;
 let outputTable;
 let nextOffset;
+let newPageFlg = false;
 
 function previewSS() {
     if (!checkTableErrors()) {
@@ -46,6 +47,7 @@ function previewSS() {
 }
 
 function outputSS() {
+    newPageFlg = false;
     if (!checkTableErrors()) {
         canvasArr.length = 0;
         return canvasArr;
@@ -384,6 +386,7 @@ function outputFooter(row, offset) {
 function getRowHeight(row, offset, index) {
     let contentRowHeight = getContentRowHeight(row);
     let drawHeight;
+    let qualificationFooterRowHeight = 0;
 
     if (index + 2 < outputTable.children[0].children.length - 1) {
         let nextRow = outputTable.children[0].children[index + 1];
@@ -403,16 +406,22 @@ function getRowHeight(row, offset, index) {
         let qualificationRow = outputTable.children[0].children[outputTable.children[0].children.length - 1];
         let qualificationRowHeight = getQualificationRowHeight(qualificationRow);
 
-        let qualificationFooterRowHeight = qualificationRowHeight + 100; // 100=資格欄を除いたフッター部を高さ100で描画している
+        qualificationFooterRowHeight = qualificationRowHeight + 100; // 100=資格欄を除いたフッター部を高さ100で描画している
 
         drawHeight = offset + contentRowHeight + qualificationFooterRowHeight;
         // console.log("drawHeight = " + drawHeight);
     }
 
-    if (A4_PAPER_HEIGHT < drawHeight) {
+    if (DRAWING_AREA_HEIGHT < drawHeight) {
         // 改ページの際、プロジェクト下部に空白行を挿入する処理
         // contentRowHeight = A4_PAPER_HEIGHT - offset - BOTTOM_MARGIN;
         nextOffset = TOP_MARGIN;
+        newPageFlg = true;
+    }
+    else if (qualificationFooterRowHeight != 0 && newPageFlg != true) {
+        // 1ページだけの際、プロジェクト下部に空白行を挿入する処理
+        contentRowHeight = A4_PAPER_HEIGHT - offset - BOTTOM_MARGIN - qualificationFooterRowHeight;
+        nextOffset = offset + contentRowHeight;
     }
     else {
         nextOffset = offset + contentRowHeight;

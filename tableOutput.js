@@ -18,7 +18,7 @@ function initTable() {
     let cell9 = row.insertCell(-1);
     let cell10 = row.insertCell(-1);
     // セルの内容入力
-    cell1.innerHTML = index + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)"><br><input type="checkbox" id="hideRow" onchange="hideRow(this)">行を非表示';
+    cell1.innerHTML = index + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)"><br><input type="checkbox" id="hideRow" onchange="hideRow(this)">行を非表示<br><br>';
     cell2.innerHTML = '<input name="startMonth" type="month" min="1970-04" onBlur="setDate(this, 0)">' + '<br>～' + '<input name="endMonth" type="month" min="1970-04" onBlur="setDate(this, 1)">' + '<br>(0ヶ月)';
     cell3.innerHTML = '<textarea rows="10" class = "outPutText" cols="50" style="width: 100%; height: 100%; resize: none" onchange="verifyText(this, ' + ONEPROJECT_MAX_CHARNUM + ')"></textarea>';
     cell4.innerHTML = '<textarea rows="10"class = "outPutText"  cols="17" style="width: 99%; height: 100%; resize: none" onchange="verifyText(this, ' + KEYWORD_MAX_CHARNUM + ')"></textarea>';
@@ -77,7 +77,7 @@ function createTable(jsonParse) {
     for (i = 0; i < jsonParse.project.length; i++) {
         row = outputTable.insertRow(-1);
         cell1 = row.insertCell(-1);
-        cell1.innerHTML = i + 1 + '<br>' + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)"><br><input type="checkbox" id="hideRow" onchange="hideRow(this)">行を非表示';
+        cell1.innerHTML = i + 1 + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)"><br><input type="checkbox" id="hideRow" onchange="hideRow(this)">行を非表示<br><br>';
 
         jsonParse.project[i].forEach((prj, i) => {
             // console.log("prj.title = " + prj.title);
@@ -212,7 +212,7 @@ function insertRow(obj) {
     let cell9 = row.insertCell(-1);
     let cell10 = row.insertCell(-1);
     // セルの内容入力
-    cell1.innerHTML = index + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)"><br><input type="checkbox" id="hideRow" onchange="hideRow(this)">行を非表示';
+    cell1.innerHTML = index + '<br><br><input type="button" value="+" id="insertRow" onclick="insertRow(this)"><br><input type="button" value="-" id="deleteRow" onclick="deleteRow(this)"><br><input type="checkbox" id="hideRow" onchange="hideRow(this)">行を非表示<br><br>';
     cell2.innerHTML = '<input name="startMonth" type="month" min="1970-04" onBlur="setDate(this, 0)">' + '<br>～' + '<input name="endMonth" type="month" min="1970-04" onBlur="setDate(this, 1)">' + '<br>(0ヶ月)';
     cell3.innerHTML = '<textarea class = "outPutText" rows="10" cols="50" style="width: 100%; height: 100%; resize: none" onchange="verifyText(this, ' + ONEPROJECT_MAX_CHARNUM + ')"></textarea>';
     cell4.innerHTML = '<textarea class = "outPutText" rows="10" cols="17" style="width: 99%; height: 100%; resize: none"  onchange="verifyText(this, ' + KEYWORD_MAX_CHARNUM + ')"></textarea>';
@@ -333,4 +333,4 @@ function calcOverhangCharNum(text, maxLength) {
         }
     }
     return overhangNum;
-};
+}
