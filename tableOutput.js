@@ -31,7 +31,7 @@ function initTable() {
     row = outputTable.insertRow(-1);
     cell1 = row.insertCell(-1);
     cell1.innerHTML = '<span style="font-weight : bold">資格</span>';
-    cell1.innerHTML += '<img src="./img/help.gif" class="StyleOutputTable" onmouseover="showHelpPopUp(\'help_qualification_msg\', \'help_qualification\', event)" onmouseout="hideHelpPopUp(\'help_qualification\')"><div id="help_qualification"></div><div id="help_qualification_msg" class="hidden">資格：情報処理やパソコン関係の資格、または無線や電気工事関係の資格をお持ちの方は記載して下さい。<br>また、語学についてもなんらかの資格をお持ちの方は記載して下さい。<br>（TOEICの場合は点数も明記すること）<br><br>※1行の最大は半角92文字、最大行数は51行の制限があります。<br>　1行半角51文字(全角26文字)以降、カーソルが移動したときに削除されます。</div><br>';
+    cell1.innerHTML += '<img src="./img/help.gif" class="StyleOutputTable" onmouseover="showHelpPopUp(\'help_qualification_msg\', \'help_qualification\', event)" onmouseout="hideHelpPopUp(\'help_qualification\')"><div id="help_qualification"></div><div id="help_qualification_msg" class="hidden">資格：情報処理やパソコン関係の資格、または無線や電気工事関係の資格をお持ちの方は記載して下さい。<br>また、語学についてもなんらかの資格をお持ちの方は記載して下さい。<br>（TOEICの場合は点数も明記すること）<br><br>※1行の最大は半角92文字、最大行数は51行の制限があります。<br>　1行半角93文字(全角47文字)以降、カーソルが移動したときに削除されます。</div><br>';
     cell1.colSpan = 10;
 
     row = outputTable.insertRow(-1);
@@ -138,7 +138,7 @@ function createTable(jsonParse) {
     row = outputTable.insertRow(-1);
     cell1 = row.insertCell(-1);
     cell1.innerHTML = '<span style="font-weight : bold">資格</span>';
-    cell1.innerHTML += '<img src="./img/help.gif" onmouseover="showHelpPopUp(\'help_qualification_msg\', \'help_qualification\', event)" onmouseout="hideHelpPopUp(\'help_qualification\')"><div id="help_qualification"></div><div id="help_qualification_msg" class="hidden">資格：情報処理やパソコン関係の資格、または無線や電気工事関係の資格をお持ちの方は記載して下さい。<br>また、語学についてもなんらかの資格をお持ちの方は記載して下さい。<br>（TOEICの場合は点数も明記すること）<br><br>※1行の最大は半角92文字、最大行数は51行の制限があります。<br>　1行半角51文字(全角26文字)以降、カーソルが移動したときに削除されます。</div><br>';
+    cell1.innerHTML += '<img src="./img/help.gif" onmouseover="showHelpPopUp(\'help_qualification_msg\', \'help_qualification\', event)" onmouseout="hideHelpPopUp(\'help_qualification\')"><div id="help_qualification"></div><div id="help_qualification_msg" class="hidden">資格：情報処理やパソコン関係の資格、または無線や電気工事関係の資格をお持ちの方は記載して下さい。<br>また、語学についてもなんらかの資格をお持ちの方は記載して下さい。<br>（TOEICの場合は点数も明記すること）<br><br>※1行の最大は半角92文字、最大行数は51行の制限があります。<br>　1行半角93文字(全角47文字)以降、カーソルが移動したときに削除されます。</div><br>';
     cell1.colSpan = 10;
 
     row = outputTable.insertRow(-1);
