@@ -162,9 +162,9 @@ function calcPeriod(start, end) {
     // console.log("endMonth = " + endMonth);
     let year = endYear - startYear;
     let month = endMonth - startMonth + 1;
-    if (month < 0) {
-        month += 12;
-    }
+    // if (month < 0) {
+    //     month += 12;
+    // }
     return month + year * 12;
 }
 
